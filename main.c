@@ -17,7 +17,7 @@ int main() {
           printf("your number is Odd");
       }
       else {
-        printf("Your number is ODD and less than or equal to 10\n");
+        printf("Your number is ODD and less than or equal to - 10\n");
     }
     return 0;
     }
