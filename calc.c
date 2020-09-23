@@ -29,6 +29,6 @@ int main(){
         printf("wrong operator");
 
     }
-    printf("the is the result: %f", result);
+    printf("the result is: %f", result);
     return 0;
 }
