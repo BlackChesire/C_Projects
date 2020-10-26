@@ -28,7 +28,7 @@ int main(){
         }
         return 0;
     }
-    printf("After..");
+    printf("After...");
     printf("After..");
     printf("Actual payment..");
     printf("house worth is:");
