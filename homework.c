@@ -1,4 +1,4 @@
-//Avicahi Aziz & Asaf Ben Shabat
+//Avicahi Aziz 316373497 & Asaf Ben Shabat 312391774
 #include <stdio.h> 
 int main(){
     double house_cost = 0,down_payment = 0,intial_savings=0,mortgage_annual_rate=0;
@@ -22,8 +22,11 @@ int main(){
     scanf("%lf",&monthly_rent);
 
     int house_rent(double monthly_rent){
-        //gets the number of months rented and calcs the sum of the savings collected.
-        
+        for(int i=0; i < monthly_rent; i++){
+
+
+        }
+        return 0;
     }
     printf("After..");
     printf("After..");
@@ -33,7 +36,8 @@ int main(){
 }
 
 /* RUN EXAMPLE :
-Enter (House-cost, down-payment, savings, savings-annual-rate, mortgage-annual-rate, salary, fraction-saving, annual-raise, house-rent):
+Enter (House-cost, down-payment, savings, savings-annual-rate, mortgage-annual-rate, salary, fraction-saving, 
+annual-raise, house-rent):
 (600000, 0.15, 50000, 0.02, 0.03, 10000, 0.3, 0.03, 2000)
 After 2 years and 10 months you will have enough money for the down payment
 After 16 years and 2 months you will cover the cost of the house
