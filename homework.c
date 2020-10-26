@@ -28,10 +28,10 @@ int main(){
         }
         return 0;
     }
-    printf("After..\n");
-    printf("After..\n");
-    printf("Actual payment..\n");
-    printf("house worth is:\n");
+    printf("After..");
+    printf("After..");
+    printf("Actual payment..");
+    printf("house worth is:");
     return 0;
 }
 
