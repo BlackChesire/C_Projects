@@ -34,7 +34,7 @@ int main(){
     printf("house worth is:");
     return 0;
 }
-//xh
+//xee
 
 /* RUN EXAMPLE :
 Enter (House-cost, down-payment, savings, savings-annual-rate, mortgage-annual-rate, salary, fraction-saving, 
