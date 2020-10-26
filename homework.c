@@ -21,12 +21,14 @@ int main(){
     printf("please enter monthly rate:");
     scanf("%lf",&monthly_rent);
 
-
-
     int house_rent(double monthly_rent){
         //gets the number of months rented and calcs the sum of the savings collected.
         
     }
+    printf("After..");
+    printf("After..");
+    printf("Actual payment..");
+    printf("house worth is:");
     return 0;
 }
 
