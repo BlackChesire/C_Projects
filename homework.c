@@ -24,9 +24,10 @@ int main()
 
     int house_rent(double monthly_rent)
     {
-        for(int i=0; i < monthly_rent; i++){
+        for(int i=0; i < monthly_rent; i++)
+        {
 
-
+            return 0;
         }
         return 0;
     }
