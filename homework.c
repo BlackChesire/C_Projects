@@ -35,7 +35,6 @@ int main(){
     return 0;
 }
 
-//hi
 
 /* RUN EXAMPLE :
 Enter (House-cost, down-payment, savings, savings-annual-rate, mortgage-annual-rate, salary, fraction-saving, 
