@@ -1,15 +1,7 @@
 //Avicahi Aziz 316373497 & Asaf Ben Shabat 312391774
 #include <stdio.h> 
-int main()
-    int house_rent(double monthly_rent)
-    {
-        for(int i=0; i < monthly_rent; i++)
-        {
 
-            return 0;
-        }
-        return 0;
-    }
+int main()
 {
     double house_cost = 0,down_payment = 0,initial_savings=0, saving_annual_rate=0, mortgage_annual_rate=0;
     double fraction_house_buying = 0, monthly_rent = 0;
@@ -28,6 +20,15 @@ int main()
     
     return 0;
 }
+    int house_rent(double monthly_rent)
+    {
+        for(int i=0; i < monthly_rent; i++)
+        {
+
+            return 0;
+        }
+        return 0;
+    }
 
 
 
