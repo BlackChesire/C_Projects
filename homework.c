@@ -15,7 +15,6 @@ int main() {
     double current_savings = initial_savings;
     double current_monthly_salary = initial_monthly_salary;
     double own_furtune_needed = (house_cost * down_payment);
-    double house_payment = (house_cost - current_savings); //the rest payment for the house
     double salary_for_houses = (current_monthly_salary *  fraction_house_buying); //included the rent and the salary of the wanted house 
     double salary_to_save = (salary_for_houses - monthly_rent); //the part of salary for the house wants to buy
     double saving_monthly_rate = (saving_annual_rate / 12);
@@ -26,7 +25,7 @@ int main() {
 
     while (current_savings < own_furtune_needed) {
         
-        if ((salary_for_houses) > (monthly_rent)) {
+        if ((salary_for_houses) >= (monthly_rent)) {
 
             while ((++count_months % 13) != 0) { //mudolo 13 to count from 1-12
                
@@ -36,14 +35,11 @@ int main() {
                     salary_for_houses = (current_monthly_salary *  fraction_house_buying);
                     ++count_years;
                     count_months = 0;
-
                 }
+
                 current_savings += (current_savings * saving_monthly_rate); //add the monthly rate to the savings
                 salary_to_save = (salary_for_houses - monthly_rent); //the part of salary for the wanted house each month
-                current_savings += salary_to_save; //add the saved salary for the house, to the savings every month
-
-               // house_payment += (house_payment * mortgage_monthly_rate); //add the monthly mortgage rate to the payment of the house  
-            
+                current_savings += salary_to_save; //add the saved salary for the house, to the savings every month            
         
                 if (current_savings > own_furtune_needed) {
                     
@@ -52,29 +48,46 @@ int main() {
 
                     break;
                 }
-            
-
             }
         }
 
         else 
         {
-            printf("Error: housing portion of the salary is insufficient to cover rent");
+            printf("Error: housing portion of the salary is insufficient to cover rent\n");
             
             return 2;
         }
-    
-    
-    
     }
 
-
+    double house_payment = (house_cost - current_savings); //the rest payment for the house
+    current_savings = 0; //after the payment for the bank        
+    salary_to_save = (current_monthly_salary * fraction_house_buying); //the payment for the mortgage each month
+    
+    if (salary_to_save >= (house_payment * mortgage_monthly_rate)) {
         
+
+    }
+
+    else
+    {
+        printf("Error: The monthly repayment amount is lower than the amount to be paid as a monthly repayment\n");
+
+        return 3;
+    }
+    
+
+
+
+
+
+
+
+
+
+
 
     }   
 
-       // final_house_cost += own_furtune_needed; //add cause payed this money
-       // current_savings = 0; //the current savings is 0 because we pay it for the house
 
     else
     {
