@@ -24,7 +24,7 @@ int main() {
     int count_years = 0;
 
 
-    while (current_savings != own_furtune_needed) {
+    while (current_savings < own_furtune_needed) {
         
         if ((salary_for_houses) > (monthly_rent)) {
 
@@ -44,7 +44,8 @@ int main() {
             }
         
                 if (current_savings > own_furtune_needed) {
-                    printf("After %d years and %d months you will have enough money for the down payment", count_years,
+                    
+                    printf("After %d years and %d months you will have enough money for the down payment\n", count_years,
                     count_months);
 
                     break;
