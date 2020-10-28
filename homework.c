@@ -17,7 +17,7 @@ int main()
     double own_furtune_needed = (house_cost * down_payment);
     double house_payment = (house_cost - current_savings); //the rest payment for the house
     double salary_for_houses = (current_monthly_salary *  fraction_house_buying); //included the rent and the salary of the wanted house 
-    double salary_to_save = 0; //the part of salary for the house wants to buy
+    double salary_to_save = (salary_for_houses - monthly_rent); //the part of salary for the house wants to buy
     double saving_monthly_rate = (saving_annual_rate / 12);
     double mortgage_monthly_rate = (mortgage_annual_rate / 12);
     int count_months = 0;
@@ -28,36 +28,34 @@ int main()
         
         if ((salary_for_houses) > (monthly_rent)) {
 
-            while ((++count_months % 12) == 0) {
+            while ((++count_months % 12) != 0) {
+    
+                if (count_months == 12) { //count years
 
-                salary_to_save = (salary_for_houses - monthly_rent); //the part of salary for the wanted house each month
-                current_savings += salary_to_save; //add the saved salary for the house, to the savings every month
-                current_savings += (current_savings * saving_monthly_rate); //add the monthly rate to the savings
-               // house_payment += (house_payment * mortgage_monthly_rate); //add the monthly mortgage rate to the payment of the house  
-                ++count_months; //count the months
-            }
-        }
-
-                if (current_savings == own_furtune_needed) {
-                    break
-
-/*            while (current_savings != own_furtune_needed) {
-                salary_to_save = (salary_for_houses - monthly_rent); //the part of salary for the wanted house each month
-                current_savings += salary_to_save; //add the saved salary for the house, to the savings every month
-                current_savings += (current_savings * saving_monthly_rate); //add the monthly rate to the savings
-               // house_payment += (house_payment * mortgage_monthly_rate); //add the monthly mortgage rate to the payment of the house  
-                ++count_months; //count the months
-*/
-
-                if (count_months == 12) { //count the years
                     current_monthly_salary += (current_monthly_salary * raise_fraction); //add the raise to salary
                     ++count_years;
                     count_months = 0;
 
+                current_savings += (current_savings * saving_monthly_rate); //add the monthly rate to the savings
+                salary_to_save = (salary_for_houses - monthly_rent); //the part of salary for the wanted house each month
+                current_savings += salary_to_save; //add the saved salary for the house, to the savings every month
+               
+               // house_payment += (house_payment * mortgage_monthly_rate); //add the monthly mortgage rate to the payment of the house  
+            }
+        
+                if (current_savings > own_furtune_needed) {
+                    printf("After %d years and %d months you will have enough money for the down payment", count_years,
+                    count_months);
+
+                    break;
                 }
+            
 
             }
         }
+    
+
+    }
 
         else
         {
