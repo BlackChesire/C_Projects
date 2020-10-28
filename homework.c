@@ -22,27 +22,41 @@ int main()
     int count_years = 0;
 
     if (current_savings != own_furtune_needed) {
-        
-        while (current_savings != own_furtune_needed) {
-            salary_to_save = (salary_for_houses - monthly_rent); //the part of salary for the house wants to buy
-            current_savings += salary_to_save; //add the saved salary for the house, to the savings
-            ++count_months;
+        if ((salary_for_houses) > (monthly_rent)) {
 
-            if (count_months == 12) {
-                ++count_years;
-                count_months = 0;
+            while (current_savings != own_furtune_needed) {
+                salary_to_save = (salary_for_houses - monthly_rent); //the part of salary for the wanted house
+                current_savings += salary_to_save; //add the saved salary for the house, to the savings
+                ++count_months; //count the months
+                
+
+                if (count_months == 12) { //count the years
+                    ++count_years;
+                    count_months = 0;
+                    current_monthly_salary += (current_monthly_salary * raise_fraction); //add the raise to salary
+
+                }
+
             }
-
-
-
-
         }
-    }
+
+        else
+        {
+            printf("Error, fraction house buying lower then monthly rent");
+            return 2
+        }
+        
+
+    }   
+
+
 
     else
     {
+        final_house_cost += own_furtune_needed; //add cause payed this money
         current_savings = 0; //the current savings is 0 because we pay it for the house
-        
+
+
     }
     
 
