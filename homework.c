@@ -5,8 +5,8 @@ double house_cost = 0, down_payment = 0, initial_savings = 0, saving_annual_rate
 double fraction_house_buying = 0, monthly_rent = 0;
 double initial_monthly_salary = 0, raise_fraction = 0;
 
-int main()
-{
+int main() {
+    
     printf("Enter (House-cost, down-payment, savings, savings-annual-rate, mortgage-annual-rate, salary, fraction-saving, annual-raise, house-rent):\n");
     if (scanf("(%lf, %lf, %lf, %lf, %lf, %lf, %lf, %lf, %lf)",&house_cost, &down_payment, &initial_savings, &saving_annual_rate, 
     &mortgage_annual_rate, &initial_monthly_salary, &fraction_house_buying, &raise_fraction, &monthly_rent) == 9) {
@@ -57,8 +57,7 @@ int main()
 
     }
 
-        else
-        {
+        else {
             printf("Error, fraction house buying lower then monthly rent");
             return 2;
         }
@@ -70,17 +69,6 @@ int main()
         final_house_cost += own_furtune_needed; //add cause payed this money
         current_savings = 0; //the current savings is 0 because we pay it for the house
 
-
-    
-    
-
-
-
-
-
-
-    }
-
     else
     {
         printf("Error, must be 9 values\n");
@@ -88,7 +76,6 @@ int main()
     }
     
 
-    printf("After...\n");
     printf("After..\n");
     printf("Actual payment..\n");
     printf("house worth is:\n");
