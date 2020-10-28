@@ -24,7 +24,7 @@ int main() {
     int count_years = 0;
 
 
-    while (current_savings != own_furtune_needed) { //or if
+    while (current_savings != own_furtune_needed) {
         
         if ((salary_for_houses) > (monthly_rent)) {
 
@@ -56,7 +56,7 @@ int main() {
 
         else 
         {
-            printf("Error, fraction house buying lower then monthly rent");
+            printf("Error: housing portion of the salary is insufficient to cover rent");
             
             return 2;
         }
