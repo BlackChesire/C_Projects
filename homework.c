@@ -1,16 +1,23 @@
 //Avicahi Aziz 316373497 & Asaf Ben Shabat 312391774
 #include <stdio.h> 
 
-double house_cost = 0,down_payment = 0,initial_savings = 0, saving_annual_rate = 0, mortgage_annual_rate = 0;
+double house_cost = 0, down_payment = 0, initial_savings = 0, saving_annual_rate = 0, mortgage_annual_rate = 0;
 double fraction_house_buying = 0, monthly_rent = 0;
-double intial_monthly_salary = 0, raise_fraction = 0;
+double initial_monthly_salary = 0, raise_fraction = 0;
 
 int main()
 {
     printf("Enter (House-cost, down-payment, savings, savings-annual-rate, mortgage-annual-rate, salary, fraction-saving, annual-raise, house-rent):\n");
     if (scanf("(%lf, %lf, %lf, %lf, %lf, %lf, %lf, %lf, %lf)",&house_cost, &down_payment, &initial_savings, &saving_annual_rate, 
-    &mortgage_annual_rate, &intial_monthly_salary, &fraction_house_buying, &raise_fraction, &monthly_rent) == 9) {
+    &mortgage_annual_rate, &initial_monthly_salary, &fraction_house_buying, &raise_fraction, &monthly_rent) == 9) {
     
+    double final_house_cost = 0, current_savings = initial_savings, current_monthly_salary = initial_monthly_salary;
+
+    
+
+
+
+
 
     }
 
