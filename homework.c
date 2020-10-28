@@ -1,11 +1,10 @@
 //Avicahi Aziz 316373497 & Asaf Ben Shabat 312391774
 #include <stdio.h> 
-
+double house_cost = 0,down_payment = 0,initial_savings=0, saving_annual_rate=0, mortgage_annual_rate=0;
+double fraction_house_buying = 0, monthly_rent = 0;
+double intial_monthly_salary=0, raise_fraction=0;
 int main()
 {
-    double house_cost = 0,down_payment = 0,initial_savings=0, saving_annual_rate=0, mortgage_annual_rate=0;
-    double fraction_house_buying = 0, monthly_rent = 0;
-    double intial_monthly_salary=0, raise_fraction=0;
     printf("Enter (House-cost, down-payment, savings, savings-annual-rate, mortgage-annual-rate, salary, fraction-saving, annual-raise, house-rent):\n");
     scanf("(%lf, %lf, %lf, %lf, %lf, %lf, %lf, %lf, %lf)",&house_cost, &down_payment, &initial_savings, &saving_annual_rate, 
     &mortgage_annual_rate, &intial_monthly_salary, &fraction_house_buying, &raise_fraction, &monthly_rent);
@@ -20,15 +19,14 @@ int main()
     
     return 0;
 }
-    int house_rent(double monthly_rent)
+double house_rent(double monthly_rent)
+{
+    for(int i=0; i < monthly_rent; i++)
     {
-        for(int i=0; i < monthly_rent; i++)
-        {
 
-            return 0;
-        }
-        return 0;
+        return NULL;
     }
+ }
 
 
 
