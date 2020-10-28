@@ -53,20 +53,25 @@ int main() {
 
             }
         }
-    
-
-    }
-
-        else {
+        
+        else 
+        {
             printf("Error, fraction house buying lower then monthly rent");
+            
             return 2;
         }
+    
+    
+    
+    }
+
+
         
 
     }   
 
-        final_house_cost += own_furtune_needed; //add cause payed this money
-        current_savings = 0; //the current savings is 0 because we pay it for the house
+       // final_house_cost += own_furtune_needed; //add cause payed this money
+       // current_savings = 0; //the current savings is 0 because we pay it for the house
 
     else
     {
