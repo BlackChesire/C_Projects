@@ -29,24 +29,18 @@ int main() {
         if ((salary_for_houses) > (monthly_rent)) {
 
             while ((++count_months % 13) != 0) { //mudolo 13 to count from 1-12
-                
-                printf("current_monthly_salary1: %lf, current_savings: %lf, salary_to save: %lf\n",current_monthly_salary,current_savings,salary_to_save );
-
                
                 if (count_months == 12) { //count years
 
                     current_monthly_salary += (current_monthly_salary * raise_fraction); //add the raise to salary
+                    salary_for_houses = (current_monthly_salary *  fraction_house_buying);
                     ++count_years;
                     count_months = 0;
-
-                    printf("current_monthly_salary2: %lf, current_savings: %lf, salary_to save: %lf\n",current_monthly_salary,current_savings,salary_to_save );
 
                 }
                 current_savings += (current_savings * saving_monthly_rate); //add the monthly rate to the savings
                 salary_to_save = (salary_for_houses - monthly_rent); //the part of salary for the wanted house each month
                 current_savings += salary_to_save; //add the saved salary for the house, to the savings every month
-
-                printf("current_monthly_salary3: %lf, current_savings: %lf, salary_to save: %lf\n",current_monthly_salary,current_savings,salary_to_save );
 
                // house_payment += (house_payment * mortgage_monthly_rate); //add the monthly mortgage rate to the payment of the house  
             
