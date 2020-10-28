@@ -16,7 +16,7 @@ int main()
     else
     {
         printf("Error, must be 9 values");
-        return 1
+        return 1;
     }
     
 
@@ -29,13 +29,13 @@ int main()
     return 0;
 }
 
-double house_rent(double monthly_rent);
+double house_rent(double monthly_rent)
 
 {
     for(int i=0; i < monthly_rent; i++)
     {
 
-        return NULL;
+        return -1;
     }
  }
 
