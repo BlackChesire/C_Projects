@@ -1,16 +1,85 @@
 //Avicahi Aziz 316373497 & Asaf Ben Shabat 312391774
 #include <stdio.h> 
 
-double house_cost = 0,down_payment = 0,initial_savings = 0, saving_annual_rate = 0, mortgage_annual_rate = 0;
+double house_cost = 0, down_payment = 0, initial_savings = 0, saving_annual_rate = 0, mortgage_annual_rate = 0;
 double fraction_house_buying = 0, monthly_rent = 0;
-double intial_monthly_salary = 0, raise_fraction = 0;
+double initial_monthly_salary = 0, raise_fraction = 0;
 
 int main()
 {
     printf("Enter (House-cost, down-payment, savings, savings-annual-rate, mortgage-annual-rate, salary, fraction-saving, annual-raise, house-rent):\n");
     if (scanf("(%lf, %lf, %lf, %lf, %lf, %lf, %lf, %lf, %lf)",&house_cost, &down_payment, &initial_savings, &saving_annual_rate, 
-    &mortgage_annual_rate, &intial_monthly_salary, &fraction_house_buying, &raise_fraction, &monthly_rent) == 9) {
+    &mortgage_annual_rate, &initial_monthly_salary, &fraction_house_buying, &raise_fraction, &monthly_rent) == 9) {
     
+    double final_house_cost = 0;
+    double current_savings = initial_savings;
+    double current_monthly_salary = initial_monthly_salary;
+    double own_furtune_needed = (house_cost * down_payment);
+    double house_payment = (house_cost - current_savings); //the rest payment for the house
+    double salary_for_houses = (current_monthly_salary *  fraction_house_buying); //included the rent and the salary of the wanted house 
+    double salary_to_save = 0; //the part of salary for the house wants to buy
+    double saving_monthly_rate = (saving_annual_rate / 12);
+    double mortgage_monthly_rate = (mortgage_annual_rate / 12);
+    int count_months = 0;
+    int count_years = 0;
+
+
+    while (current_savings != own_furtune_needed) { //or if
+        
+        if ((salary_for_houses) > (monthly_rent)) {
+
+            while ((++count_months % 12) == 0) {
+
+                salary_to_save = (salary_for_houses - monthly_rent); //the part of salary for the wanted house each month
+                current_savings += salary_to_save; //add the saved salary for the house, to the savings every month
+                current_savings += (current_savings * saving_monthly_rate); //add the monthly rate to the savings
+               // house_payment += (house_payment * mortgage_monthly_rate); //add the monthly mortgage rate to the payment of the house  
+                ++count_months; //count the months
+            }
+        }
+
+                if (current_savings == own_furtune_needed) {
+                    break
+
+/*            while (current_savings != own_furtune_needed) {
+                salary_to_save = (salary_for_houses - monthly_rent); //the part of salary for the wanted house each month
+                current_savings += salary_to_save; //add the saved salary for the house, to the savings every month
+                current_savings += (current_savings * saving_monthly_rate); //add the monthly rate to the savings
+               // house_payment += (house_payment * mortgage_monthly_rate); //add the monthly mortgage rate to the payment of the house  
+                ++count_months; //count the months
+*/
+
+                if (count_months == 12) { //count the years
+                    current_monthly_salary += (current_monthly_salary * raise_fraction); //add the raise to salary
+                    ++count_years;
+                    count_months = 0;
+
+                }
+
+            }
+        }
+
+        else
+        {
+            printf("Error, fraction house buying lower then monthly rent");
+            return 2;
+        }
+        
+
+    }   
+
+
+        final_house_cost += own_furtune_needed; //add cause payed this money
+        current_savings = 0; //the current savings is 0 because we pay it for the house
+
+
+    
+    
+
+
+
+
+
 
     }
 
