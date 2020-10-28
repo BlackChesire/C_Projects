@@ -24,21 +24,35 @@ int main()
     int count_years = 0;
 
 
-    if (current_savings != own_furtune_needed) {
+    while (current_savings != own_furtune_needed) { //or if
+        
         if ((salary_for_houses) > (monthly_rent)) {
 
-            while (current_savings != own_furtune_needed) {
+            while ((++count_months % 12) == 0) {
+
                 salary_to_save = (salary_for_houses - monthly_rent); //the part of salary for the wanted house each month
                 current_savings += salary_to_save; //add the saved salary for the house, to the savings every month
                 current_savings += (current_savings * saving_monthly_rate); //add the monthly rate to the savings
                // house_payment += (house_payment * mortgage_monthly_rate); //add the monthly mortgage rate to the payment of the house  
                 ++count_months; //count the months
+            }
+        }
 
+                if (current_savings == own_furtune_needed) {
+                    break
+
+/*            while (current_savings != own_furtune_needed) {
+                salary_to_save = (salary_for_houses - monthly_rent); //the part of salary for the wanted house each month
+                current_savings += salary_to_save; //add the saved salary for the house, to the savings every month
+                current_savings += (current_savings * saving_monthly_rate); //add the monthly rate to the savings
+               // house_payment += (house_payment * mortgage_monthly_rate); //add the monthly mortgage rate to the payment of the house  
+                ++count_months; //count the months
+*/
 
                 if (count_months == 12) { //count the years
+                    current_monthly_salary += (current_monthly_salary * raise_fraction); //add the raise to salary
                     ++count_years;
                     count_months = 0;
-                    current_monthly_salary += (current_monthly_salary * raise_fraction); //add the raise to salary
 
                 }
 
@@ -55,14 +69,11 @@ int main()
     }   
 
 
-
-    else
-    {
         final_house_cost += own_furtune_needed; //add cause payed this money
         current_savings = 0; //the current savings is 0 because we pay it for the house
 
 
-    }
+    
     
 
 
