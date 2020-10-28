@@ -53,7 +53,7 @@ int main() {
 
             }
         }
-        
+
         else 
         {
             printf("Error, fraction house buying lower then monthly rent");
@@ -88,15 +88,15 @@ int main() {
     return 0;
 }
 
-double house_rent(double monthly_rent);
+// double house_rent(double monthly_rent);
 
-{
-    for(int i=0; i < monthly_rent; i++)
-    {
+// {
+//     for(int i=0; i < monthly_rent; i++)
+//     {
 
-        return NULL;
-    }
- }
+//         return NULL;
+//     }
+//  }
 
 
 
