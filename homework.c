@@ -26,32 +26,24 @@ int main() {
     while (current_savings < own_furtune_needed) {
         
         if ((salary_for_houses) >= (monthly_rent)) {
-            printf("month number: %d\n", count_months);
-            printf("savings: %lf\n", current_savings);
+            
             while (count_months != 13) { //unequal to 13 couse we want to count from 1-12
             
-                printf("number of month: %d",count_months);
                 if (count_months == 12) { //count years
 
                     current_monthly_salary += (current_monthly_salary * raise_fraction); //add the raise to salary
-                    salary_for_houses = (current_monthly_salary *  fraction_house_buying);
-                    printf("salary_for_houses: %lf\n",salary_for_houses);
-
-                    ++count_years;
-                    count_months = 0;
-                    printf("year number: %d\n", count_years);
+                    salary_for_houses = (current_monthly_salary *  fraction_house_buying); //the money saved for the rent house and the wish house
+                    ++count_years; //add 1 each year
+                    count_months = 0; //equate to zero after 12 month (1 year)
                 }
                 
                 current_savings += (current_savings * saving_monthly_rate); //add the monthly rate to the savings
-                printf("current_savings: %lf\n",current_savings);
                 salary_to_save = (salary_for_houses - monthly_rent); //the part of salary for the wanted house each month
-                printf("salary_to_save: %lf\n",salary_to_save);
                 current_savings += salary_to_save; //add the saved salary for the house, to the savings every month            
-                printf("current_savings: %lf\n",current_savings);
                 
                 ++count_months;
 
-                if (current_savings > own_furtune_needed) {
+                if (current_savings > own_furtune_needed) { //check if we have enough money to pay the first down payment
                     
                     printf("After %d years and %d months you will have enough money for the down payment\n", count_years,
                     count_months);
@@ -75,7 +67,22 @@ int main() {
     salary_to_save = (current_monthly_salary * fraction_house_buying); //the payment for the mortgage each month
     
     if (salary_to_save >= (house_payment * mortgage_monthly_rate)) {
-        
+    
+    /*
+    **
+    ASAF START FROM HERE!
+    LEFT TO DO- QUESTIONS NUMBER: 7, 8 AND THE FUNCTION OF THE RENT HOUSE!
+    *
+    */
+
+
+
+
+
+
+
+
+
 
     }
 
@@ -85,15 +92,6 @@ int main() {
 
         return 3;
     }
-    
-
-
-    
-    //ASAF START FROM HERE!
-
-
-
-
 
 
 
