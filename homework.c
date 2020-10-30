@@ -101,7 +101,7 @@ int main() {
 
     else
     {
-        printf("Error, must be 9 values\n");
+        printf("Error,you must enter 9 values\n");
         return 1;
     }
     
