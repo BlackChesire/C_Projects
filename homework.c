@@ -72,6 +72,8 @@ int main() {
     **
     ASAF START FROM HERE!
     LEFT TO DO- QUESTIONS NUMBER: 7, 8 AND THE FUNCTION OF THE RENT HOUSE!
+    איזה משתנה זה מספר החודשים -
+    -איזה משתנה זה הסכום שנותר לשלם כדי שאעשה while
     *
     */
 
