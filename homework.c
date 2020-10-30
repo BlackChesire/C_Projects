@@ -105,11 +105,6 @@ int main() {
         return 1;
     }
     
-
-    printf("After..\n");
-    printf("Actual payment..\n");
-    printf("house worth is:\n");
-    printf("Done !");
     
     return 0;
 }
