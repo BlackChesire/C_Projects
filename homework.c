@@ -111,11 +111,12 @@ int main() {
     return 0;
 }
 
-double house_rent(double monthly_rent){
-    for(int i = 0; i < monthly_rent;i++){
+double house_rent(double count_months){
+    for(int i = 0; i < count_months;i++){
         if (i % 12 == 0){
-            current_monthly_salary += current_monthly_salary*raise_fraction;
+            current_monthly_salary = current_monthly_salary + current_monthly_salary*raise_fraction;
             // savings must be global!
+            // savings += savings*saving_annual_
             // savings += salary_to_save - monthly_rent;
             
         }
