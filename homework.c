@@ -4,7 +4,6 @@
 double house_cost = 0, down_payment = 0, initial_savings = 0, saving_annual_rate = 0, mortgage_annual_rate = 0;
 double fraction_house_buying = 0, monthly_rent = 0;
 double initial_monthly_salary = 0, raise_fraction = 0;
-
 int main() {
     
     printf("Enter (House-cost, down-payment, savings, savings-annual-rate, mortgage-annual-rate, salary, fraction-saving, annual-raise, house-rent):\n");
@@ -13,7 +12,6 @@ int main() {
     
     double final_house_cost = 0;
     double current_savings = initial_savings;
-    double current_monthly_salary = initial_monthly_salary;
     double own_furtune_needed = (house_cost * down_payment);
     double salary_for_houses = (current_monthly_salary *  fraction_house_buying); //included the rent and the salary of the wanted house 
     double salary_to_save = (salary_for_houses - monthly_rent); //the part of salary for the house wants to buy
@@ -21,7 +19,7 @@ int main() {
     double mortgage_monthly_rate = (mortgage_annual_rate / 12);
     int count_months = 0;
     int count_years = 0;
-
+    int current_savings = house_rent(int count_months);
 
     while (current_savings < own_furtune_needed) {
         
