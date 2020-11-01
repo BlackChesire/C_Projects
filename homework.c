@@ -4,6 +4,7 @@
 double house_cost = 0, down_payment = 0, initial_savings = 0, saving_annual_rate = 0, mortgage_annual_rate = 0;
 double fraction_house_buying = 0, monthly_rent = 0;
 double initial_monthly_salary = 0, raise_fraction = 0;
+double current_monthly_salary = initial_monthly_salary;
 
 int main() {
     
@@ -13,7 +14,6 @@ int main() {
     
     double final_house_cost = 0;
     double current_savings = initial_savings;
-    double current_monthly_salary = initial_monthly_salary;
     double own_furtune_needed = (house_cost * down_payment);
     double salary_for_houses = (current_monthly_salary *  fraction_house_buying); //included the rent and the salary of the wanted house 
     double salary_to_save = (salary_for_houses - monthly_rent); //the part of salary for the house wants to buy
@@ -103,15 +103,7 @@ int main() {
 
     else
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
-        printf("Error, must be 9 values");
-=======
-        printf("Error, must be 9 values\n");
->>>>>>> a7248e1ee87d78c83eebd1c253216a30e5287d2a
-=======
         printf("Error,you must enter 9 values\n");
->>>>>>> efcc69500596707279d92c528c3dac1f617a7ba6
         return 1;
     }
     
@@ -119,27 +111,17 @@ int main() {
     return 0;
 }
 
-<<<<<<< HEAD
-double house_rent(double monthly_rent)
-=======
-// double house_rent(double monthly_rent);
->>>>>>> efcc69500596707279d92c528c3dac1f617a7ba6
-
-// {
-//     for(int i=0; i < monthly_rent; i++)
-//     {
-
-<<<<<<< HEAD
-        return -1;
+double house_rent(double monthly_rent){
+    for(int i = 0; i < monthly_rent;i++){
+        if (i % 12 == 0){
+            current_monthly_salary += current_monthly_salary*raise_fraction;
+            // savings must be global!
+            // savings += salary_to_save - monthly_rent;
+            
+        }
     }
- }
-=======
-//         return NULL;
-//     }
-//  }
->>>>>>> efcc69500596707279d92c528c3dac1f617a7ba6
-
-
+    return savings;
+}
 
 /* RUN EXAMPLE :
 Enter (House-cost, down-payment, savings, savings-annual-rate, mortgage-annual-rate, salary, fraction-saving, 
