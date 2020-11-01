@@ -48,7 +48,7 @@ int main() {
                     total_months = ((count_years * 12) + count_months);
                     printf("After %d years and %d months you will have enough money for the down payment\n", count_years,
                     count_months);
-                    printf("%f\n",current_monthly_salary);
+
                     break;
                 }
                 
@@ -64,27 +64,25 @@ int main() {
     }
 
     double house_payment = (house_cost - current_savings); //the rest payment for the house
-    double mortgage = ;
     current_savings = 0; //after the payment for the bank        
-    double refund_money = (current_monthly_salary * fraction_house_buying); //the refund money for the house each month
+    double refund_money = (current_monthly_salary * fraction_house_buying); //the const refund money for the house each month
     
     if (refund_money > (house_payment * mortgage_monthly_rate)) {
         
         while (house_payment > 0) {
             
-            total_months++;
+            total_months++; //add 1 after one month
             
             if(total_months % 12 == 0){
             
                 current_monthly_salary += (current_monthly_salary * raise_fraction);
-                printf("%lf\n",current_monthly_salary);
             }
             
-            house_payment += (house_payment * mortgage_monthly_rate);
-            salary_for_houses = (current_monthly_salary * fraction_house_buying);
-            house_payment -= refund_money;
-            current_savings += (current_savings * saving_monthly_rate);
-            current_savings += (salary_for_houses-refund_money);
+            house_payment += (house_payment * mortgage_monthly_rate); //update after each month to new one
+            salary_for_houses = (current_monthly_salary * fraction_house_buying); //the salary allocated for housing 
+            house_payment -= refund_money; //subtract the const money each month from the house payment left
+            current_savings += (current_savings * saving_monthly_rate); //update after each month
+            current_savings += (salary_for_houses-refund_money); //add the difference between the money for houses and const refund money
             
             if(current_savings > house_payment){
             
@@ -94,9 +92,8 @@ int main() {
 
 
         }
-     printf("After %d years and %d months you will have enough money for the down payment\n", total_months/12,
-                    total_months%12);
-     printf("acutal payment for the house:%.1lf\n",final_house_cost);
+     printf("After %d years and %d months you will have enough money for the down payment\n", (total_months/12),(total_months%12));
+     //printf("acutal payment for the house:%.1lf\n",final_house_cost);
      printf("house worth is %.1lf\n",house_cost);
 
     }
