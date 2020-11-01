@@ -7,6 +7,7 @@ double initial_monthly_salary = 0, raise_fraction = 0;
 
 double house_rent(int months) {
     int month = 1;
+
     while(month < months) {
 
         if (month % 12 == 0) {
@@ -15,7 +16,7 @@ double house_rent(int months) {
 
         initial_savings += (initial_savings * (saving_annual_rate / 12));
         initial_savings += ((initial_monthly_salary * fraction_house_buying) - monthly_rent);
-        ++month;
+        month++;
     }
     return initial_savings;
 }
