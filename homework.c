@@ -11,7 +11,6 @@ int main() {
     if (scanf("(%lf, %lf, %lf, %lf, %lf, %lf, %lf, %lf, %lf)",&house_cost, &down_payment, &initial_savings, &saving_annual_rate, 
     &mortgage_annual_rate, &initial_monthly_salary, &fraction_house_buying, &raise_fraction, &monthly_rent) == 9) {
     
-    double final_house_cost = 0;
     double current_savings = initial_savings;
     double current_monthly_salary = initial_monthly_salary;
     double own_furtune_needed = (house_cost * down_payment);
@@ -49,7 +48,7 @@ int main() {
                     total_months = ((count_years * 12) + count_months);
                     printf("After %d years and %d months you will have enough money for the down payment\n", count_years,
                     count_months);
-
+                    printf("%f\n",current_monthly_salary);
                     break;
                 }
                 
@@ -69,26 +68,30 @@ int main() {
     salary_to_save = (current_monthly_salary * fraction_house_buying); //the payment for the mortgage each month
     
     if (salary_to_save >= (house_payment * mortgage_monthly_rate)) {
-    
-    /*
-    **
-    ASAF START FROM HERE!
-    LEFT TO DO- QUESTIONS NUMBER: 7, 8 AND THE FUNCTION OF THE RENT HOUSE!
-    איזה משתנה זה מספר החודשים -
-    -איזה משתנה זה הסכום שנותר לשלם כדי שאעשה while
-    *
-    */
+        while (house_payment > 0)
+        {
+            total_months++;
+            if(total_months % 12 == 0){
+                current_monthly_salary += current_monthly_salary*raise_fraction;
+                printf("%f\n",current_monthly_salary);
+            }
+            house_payment += house_payment*mortgage_monthly_rate;
+            house_payment -= salary_for_houses;
+            current_savings += (current_savings*saving_monthly_rate);
+            current_savings += (salary_for_houses - salary_to_save);
+            if(current_savings > house_payment){
+            house_payment -= current_savings;
+            }
 
 
-
-
-
-
-
-
-
+        }
+     printf("After %d years and %d months you will have enough money for the down payment\n", total_months/12,
+                    total_months%12);
+     printf("acutal payment for the house:%.1lf\n",final_house_cost);
+     printf("house worth is %.1lf\n",house_cost);
 
     }
+    
 
     else
     {
@@ -113,17 +116,17 @@ int main() {
     return 0;
 }
 
-double house_rent(double monthly_rent){
-    for(int i = 0; i < monthly_rent;i++){
-        if (i % 12 == 0){
-            current_monthly_salary += current_monthly_salary*raise_fraction;
-            // savings must be global!
-            // savings += salary_to_save - monthly_rent;
+// double house_rent(double monthly_rent){
+//     for(int i = 0; i < monthly_rent;i++){
+//         if (i % 12 == 0){
+//             current_monthly_salary += current_monthly_salary*raise_fraction;
+//             // savings must be global!
+//             // savings += salary_to_save - monthly_rent;
             
-        }
-    }
-    return savings;
-}
+//         }
+//     }
+//     return savings;
+// }
 
 /* RUN EXAMPLE :
 Enter (House-cost, down-payment, savings, savings-annual-rate, mortgage-annual-rate, salary, fraction-saving, 
