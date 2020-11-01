@@ -4,6 +4,7 @@
 double house_cost = 0, down_payment = 0, initial_savings = 0, saving_annual_rate = 0, mortgage_annual_rate = 0;
 double fraction_house_buying = 0, monthly_rent = 0;
 double initial_monthly_salary = 0, raise_fraction = 0;
+
 int main() {
     
     printf("Enter (House-cost, down-payment, savings, savings-annual-rate, mortgage-annual-rate, salary, fraction-saving, annual-raise, house-rent):\n");
@@ -12,6 +13,7 @@ int main() {
     
     double final_house_cost = 0;
     double current_savings = initial_savings;
+    double current_monthly_salary = initial_monthly_salary;
     double own_furtune_needed = (house_cost * down_payment);
     double salary_for_houses = (current_monthly_salary *  fraction_house_buying); //included the rent and the salary of the wanted house 
     double salary_to_save = (salary_for_houses - monthly_rent); //the part of salary for the house wants to buy
@@ -19,6 +21,8 @@ int main() {
     double mortgage_monthly_rate = (mortgage_annual_rate / 12);
     int count_months = 0;
     int count_years = 0;
+    int total_months = 0;
+
 
     while (current_savings < own_furtune_needed) {
         
@@ -42,6 +46,7 @@ int main() {
 
                 if (current_savings > own_furtune_needed) { //check if we have enough money to pay the first down payment
                     
+                    total_months = ((count_years * 12) + count_months);
                     printf("After %d years and %d months you will have enough money for the down payment\n", count_years,
                     count_months);
 
@@ -108,12 +113,11 @@ int main() {
     return 0;
 }
 
-double house_rent(double count_months){
-    for(int i = 0; i < count_months;i++){
+double house_rent(double monthly_rent){
+    for(int i = 0; i < monthly_rent;i++){
         if (i % 12 == 0){
-            current_monthly_salary = current_monthly_salary + current_monthly_salary*raise_fraction;
+            current_monthly_salary += current_monthly_salary*raise_fraction;
             // savings must be global!
-            // savings += savings*saving_annual_
             // savings += salary_to_save - monthly_rent;
             
         }
