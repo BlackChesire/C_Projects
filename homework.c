@@ -10,11 +10,15 @@ double house_rent(int months) {
     for(int month=1; month < months; month++) {
         if (month == 12) {
             initial_monthly_salary += (initial_monthly_salary * raise_fraction);
-            
+            printf("%lf\n", initial_monthly_salary);            
         }
 
-        initial_savings += (initial_savings * saving_annual_rate);
+        
+        initial_savings += (initial_savings * (saving_annual_rate / 12));
+        
         initial_savings += ((initial_monthly_salary * fraction_house_buying) - monthly_rent);
+        
+
     }
 
     return initial_savings;
@@ -108,8 +112,8 @@ int main() {
                 house_payment = 0;
             }
 
-
         }
+     
      printf("After %d years and %d months you will cover the cost of the house\n", (total_months/12),(total_months%12));
      printf("Acutal payment for the house: %.1lf\n", (rate_on_mortgage + house_cost));
      printf("House worth is %.1lf\n",house_cost);
@@ -126,7 +130,7 @@ int main() {
 
     
     double house_rent_call =  house_rent(total_months);
-    printf("%lf\n", house_rent_call);
+    printf("%.1lf\n", house_rent_call);
 
     }   
 
@@ -136,8 +140,7 @@ int main() {
         printf("Error,you must enter 9 values\n");
         return 1;
     }
-    
-    
+        
 
     return 0;
 }
