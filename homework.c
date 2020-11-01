@@ -72,10 +72,10 @@ int main() {
         {
             total_months++;
             if(total_months % 12 == 0){
-                current_monthly_salary += current_monthly_salary*raise_fraction;
-                printf("%f\n",current_monthly_salary);
+                current_monthly_salary += (current_monthly_salary * raise_fraction);
+                printf("%lf\n",current_monthly_salary);
             }
-            house_payment += house_payment*mortgage_monthly_rate;
+            house_payment += (house_payment * mortgage_monthly_rate);
             house_payment -= salary_for_houses;
             current_savings += (current_savings*saving_monthly_rate);
             current_savings += (salary_for_houses - salary_to_save);
