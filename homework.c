@@ -4,7 +4,6 @@
 double house_cost = 0, down_payment = 0, initial_savings = 0, saving_annual_rate = 0, mortgage_annual_rate = 0;
 double fraction_house_buying = 0, monthly_rent = 0;
 double initial_monthly_salary = 0, raise_fraction = 0;
-double current_monthly_salary = initial_monthly_salary;
 
 int main() {
     
@@ -14,6 +13,7 @@ int main() {
     
     double final_house_cost = 0;
     double current_savings = initial_savings;
+    double current_monthly_salary = initial_monthly_salary;
     double own_furtune_needed = (house_cost * down_payment);
     double salary_for_houses = (current_monthly_salary *  fraction_house_buying); //included the rent and the salary of the wanted house 
     double salary_to_save = (salary_for_houses - monthly_rent); //the part of salary for the house wants to buy
