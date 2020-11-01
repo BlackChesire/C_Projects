@@ -21,6 +21,7 @@ int main() {
     double mortgage_monthly_rate = (mortgage_annual_rate / 12);
     int count_months = 0;
     int count_years = 0;
+    int total_months = 0;
 
 
     while (current_savings < own_furtune_needed) {
@@ -45,6 +46,7 @@ int main() {
 
                 if (current_savings > own_furtune_needed) { //check if we have enough money to pay the first down payment
                     
+                    total_months = ((count_years * 12) + count_months);
                     printf("After %d years and %d months you will have enough money for the down payment\n", count_years,
                     count_months);
 
