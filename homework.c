@@ -64,23 +64,32 @@ int main() {
     }
 
     double house_payment = (house_cost - current_savings); //the rest payment for the house
+    double mortgage = ;
     current_savings = 0; //after the payment for the bank        
-    salary_to_save = (current_monthly_salary * fraction_house_buying); //the payment for the mortgage each month
+    double refund_money = (current_monthly_salary * fraction_house_buying); //the refund money for the house each month
     
-    if (salary_to_save >= (house_payment * mortgage_monthly_rate)) {
-        while (house_payment > 0)
-        {
+    if (refund_money > (house_payment * mortgage_monthly_rate)) {
+        
+        while (house_payment > 0) {
+            
             total_months++;
+            
             if(total_months % 12 == 0){
+            
                 current_monthly_salary += (current_monthly_salary * raise_fraction);
                 printf("%lf\n",current_monthly_salary);
             }
+            
             house_payment += (house_payment * mortgage_monthly_rate);
-            house_payment -= salary_for_houses;
-            current_savings += (current_savings*saving_monthly_rate);
-            current_savings += (salary_for_houses - salary_to_save);
+            salary_for_houses = (current_monthly_salary * fraction_house_buying);
+            house_payment -= refund_money;
+            current_savings += (current_savings * saving_monthly_rate);
+            current_savings += (salary_for_houses-refund_money);
+            
             if(current_savings > house_payment){
-            house_payment -= current_savings;
+            
+                current_savings -= house_payment;
+                house_payment = 0;
             }
 
 
