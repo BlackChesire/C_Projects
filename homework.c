@@ -6,19 +6,17 @@ double fraction_house_buying = 0, monthly_rent = 0;
 double initial_monthly_salary = 0, raise_fraction = 0;
 
 double house_rent(int months) {
-    
-    for(int month=1; month < months; month++) {
-        if (month == 12) {
-            initial_monthly_salary += (initial_monthly_salary * raise_fraction);
-            printf("%lf\n", initial_monthly_salary);            
-        }
+    printf("%d\n", months);
+    int month = 1;
+    while(month < months) {
 
+        if (month % 12 == 0) {
+            initial_monthly_salary += (initial_monthly_salary * raise_fraction);
+        }
         
         initial_savings += (initial_savings * (saving_annual_rate / 12));
-        
         initial_savings += ((initial_monthly_salary * fraction_house_buying) - monthly_rent);
-        
-
+        ++month;
     }
 
     return initial_savings;
