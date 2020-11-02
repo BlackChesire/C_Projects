@@ -13,7 +13,7 @@ double house_rent(int months) {
 
         initial_savings += initial_savings * (saving_annual_rate / 12);
         initial_savings += (initial_monthly_salary * fraction_house_buying) - monthly_rent;
-        month++;
+        month++; //add 1 to month
 
         if (month % 12 == 0) { //check if past 1 year(12 months)
 
