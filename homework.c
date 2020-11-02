@@ -1,24 +1,27 @@
 //Avicahi Aziz 316373497 & Asaf Ben Shabat 312391774
+
 #include <stdio.h> 
 
 double house_cost = 0, down_payment = 0, initial_savings = 0, saving_annual_rate = 0, mortgage_annual_rate = 0;
 double fraction_house_buying = 0, monthly_rent = 0;
 double initial_monthly_salary = 0, raise_fraction = 0;
 
-double house_rent(int months) { //problem!!!!
-    int month = 1;
+double house_rent(int months) {
+    int month = 0;
 
     while(month < months) {
 
-        if (month % 12 == 0) {
-            initial_monthly_salary += (initial_monthly_salary * raise_fraction); 
-            printf("%lf\n",initial_savings );
-        }
-
-        initial_savings += (initial_savings * (saving_annual_rate / 12));
-        initial_savings += ((initial_monthly_salary * fraction_house_buying) - monthly_rent);
+        initial_savings += initial_savings * (saving_annual_rate / 12);
+        initial_savings += (initial_monthly_salary * fraction_house_buying) - monthly_rent;
         month++;
+
+        if (month % 12 == 0) { //check if past 1 year(12 months)
+
+            initial_monthly_salary += (initial_monthly_salary * raise_fraction); 
+            
+        }
     }
+
     return initial_savings;
 }
 
@@ -40,7 +43,6 @@ int main() {
     int count_years = 0;
     int total_months = 0;
     double house_rent_call= 0;
-    double house_rent();
 
     while (current_savings < own_furtune_needed) {
         
@@ -127,7 +129,7 @@ int main() {
 
     house_rent_call =  house_rent(total_months);
     printf("After %d years and %d months you will cover the cost of the house\n", (total_months/12),(total_months%12));
-    printf("Acutal payment for the house: %.1lf\n", (rate_on_mortgage + house_cost));
+    printf("Actual payment for the house: %.1lf\n", (rate_on_mortgage + house_cost));
     printf("House worth is %.1lf\n",house_cost);
     printf("Alternatively, if you rent you will end up with %.1lf\n", house_rent_call);
 
@@ -140,19 +142,5 @@ int main() {
         return 1;
     }
         
-
     return 0;
 }
-
-
-
-/* RUN EXAMPLE :
-Enter (House-cost, down-payment, savings, savings-annual-rate, mortgage-annual-rate, salary, fraction-saving, 
-annual-raise, house-rent):
-(600000, 0.15, 50000, 0.02, 0.03, 10000, 0.3, 0.03, 2000)
-After 2 years and 10 months you will have enough money for the down payment
-After 16 years and 2 months you will cover the cost of the house
-Actual payment for the house: 734099.0
-House worth is 600000.0
-Alternatively, if you rent you will end up with 467616.2
-*/
