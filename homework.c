@@ -7,7 +7,7 @@ double fraction_house_buying = 0, monthly_rent = 0;
 double initial_monthly_salary = 0, raise_fraction = 0;
 
 double house_rent(int months) {
-    int month = 0; //add 1
+    int month = 0;
 
     while(month < months) {
 
