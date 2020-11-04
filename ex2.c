@@ -1,12 +1,12 @@
 // Asaf Ben Shabt & Avichai Aziz 316373497
 #include <stdio.h>
 #include <stdbool.h>
-int hash_arr(const char* string){
+int hash_arr(const char* str){
     unsigned long h = 5381;
     //TODO  
     return h;
 }
-int hash_ptr(const char* string){
+int hash_ptr(const char* str){
     unsigned long h = 5381;
     //TODO
     return h;
