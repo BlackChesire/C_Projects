@@ -12,7 +12,7 @@ int hash_ptr(const *char){
     return h;
 }
 bool is_legal_word(const *char){
-    //todo
+    //TODO
     return True;
 }
 int main(){
