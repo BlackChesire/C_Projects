@@ -1,4 +1,4 @@
-// Asaf Ben Shabd & Avichai Aziz
+// Asaf Ben Shabt & Avichai Aziz 316373497
 #include <stdio.h>
 #include <stdbool.h>
 int hash_arr(const *char){
