@@ -13,7 +13,9 @@ int hash_ptr(const *char){
 }
 bool is_legal_word(const *char){
     //TODO
-    return True;
+        return True;
+
+    return False;
 }
 int main(){
 
