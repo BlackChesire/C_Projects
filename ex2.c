@@ -21,3 +21,22 @@ int main(){
 
     return 0;
 }
+
+
+
+
+
+
+
+/*$ ADD hello
+$ CHECK HELLO
+exists
+$ CHECK world
+does not exist
+$ ADD 123
+illegal command
+$ KUKU hello
+illegal command
+$ EXIT*/
+
+
