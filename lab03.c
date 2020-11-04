@@ -1,5 +1,5 @@
 #include <stdio.h>
-// Asaf ben shabt 31239174
+// Asaf ben shabat 31239174
 char mytoupperr(char a){
     if(a >=97 && a<=122){
     a -= 32;
