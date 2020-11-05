@@ -27,8 +27,7 @@ bool is_legal_word(const char* words){
     
 }
 
-char word_tolower(char* str){
-    char to_lower(char* str){
+char to_lower(char* str){
       while ( *str != '\0' )
    {   
     if(*str >='A' && *str<='Z'){
@@ -39,7 +38,6 @@ char word_tolower(char* str){
    }
 }
     
-}
 int main(){
     char word_hash[500000] = {0};
     char cmd[10] = {};
