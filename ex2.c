@@ -55,11 +55,11 @@ int main(){
         }
         scanf("%s",str);
         if (!strcmp(cmd,"ADD") && (is_legal_word(str) == 1)){
-            printf("ADD BLOCK");
+            printf("ADD BLOCK\n");
             break;
         }
         if (!strcmp(cmd,"CHECK") && (is_legal_word(str) == 1)){
-            printf("CHECK BLOCK");
+            printf("CHECK BLOCK\n");
             break;
         }
 
