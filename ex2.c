@@ -31,8 +31,7 @@ char word_tolower(char* word){
     
 }
 int main(){
-    // char words[] ="AVICHAI";
-    // word_tolower(words);
+    char word_hash[500000] = {0};
     char cmd[10] = {};
     char str[10] = {};
     while (true){
