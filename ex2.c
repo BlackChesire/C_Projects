@@ -23,7 +23,7 @@ bool is_legal_word(const char* words){
         return false; // 0
     }
 
-    return true; // 1
+    return true; /// 1
     
 }
 
