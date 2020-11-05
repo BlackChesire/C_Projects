@@ -27,7 +27,17 @@ bool is_legal_word(const char* words){
     
 }
 
-char word_tolower(char* word){
+char word_tolower(char* str){
+    char to_lower(char* str){
+      while ( *str != '\0' )
+   {   
+    if(*str >='A' && *str<='Z'){
+
+    *str = *str + 32;
+    }
+      str++; 
+   }
+}
     
 }
 int main(){

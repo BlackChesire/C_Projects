@@ -1,20 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
-int main(){
-    int num = 0,highestnum=0,lowestnum;
-    scanf("%d",&lowestnum);
-    scanf("%d",&highestnum);
-    while(scanf("%d",&num) == 1){
-        if (num > highestnum){
-            highestnum = num;
-        }
-        if (num < lowestnum){
-            lowestnum = num;
-        }
+#include <stdio.h>
+#include <string.h>
+
+char to_lower(char* str){
+      while ( *str != '\0' )
+   {   
+    if(*str >='A' && *str<='Z'){
+
+    *str = *str + 32;
     }
-        printf("lowest num:%d\n",lowestnum);
-        printf("highest num:%d\n",highestnum);
-      return 0;  
+      str++; 
+   }
+}
+int main(){
+    char str[] = "AVICHAIm";
+    to_lower(str);
+    printf("%s",str);
     }
 
 
