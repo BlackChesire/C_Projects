@@ -14,7 +14,11 @@ int hash_arr(const char* str){
 }
 int hash_ptr(const char* str){
     unsigned long h = 5381;
-    //TODO
+    while ( *str != '\0' ){
+        int c = *str;
+        h = h*33+c;
+        str++;
+    }
     return h;
 }
 bool is_legal_word(const char* words){
