@@ -5,7 +5,11 @@
 
 int hash_arr(const char* str){
     unsigned long h = 5381;
-    
+    for (int i =0; str[i] != '\0'; i++){
+        int c = str[i];
+        h = h*33+c;
+
+    }
     return h;
 }
 int hash_ptr(const char* str){
