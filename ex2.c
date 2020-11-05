@@ -58,7 +58,7 @@ int main(){
             printf("ADD BLOCK\n");
             break;
         }
-        if (!strcmp(cmd,"CHECK") && (is_legal_word(str) == 1)){
+        else if (!strcmp(cmd,"CHECK") && (is_legal_word(str) == 1)){
             printf("CHECK BLOCK\n");
             break;
         }
