@@ -14,7 +14,7 @@ int hash_arr(const char* str){
 }
 int hash_ptr(const char* str){
     unsigned long h = 5381;
-    while ( *str != '\0' ){
+    while (*str != '\0'){
         int c = *str;
         h = h*33+c;
         str++;
@@ -22,7 +22,8 @@ int hash_ptr(const char* str){
     return h;
 }
 bool is_legal_word(const char* words){
-    for (int i = 0; i<strlen(words);i++){
+    int len = strlen(words);
+    for (int i = 0; i<len;i++){
         if(!(words[i] >= 'a' && words[i] <= 'z' || words[i] >= 'A' && words[i] <= 'Z'))
         return false; // 0
     }
@@ -32,10 +33,9 @@ bool is_legal_word(const char* words){
 }
 
 char to_lower(char* str){
-      while ( *str != '\0' )
+      while (*str != '\0')
    {   
     if(*str >='A' && *str<='Z'){
-
     *str = *str + 32;
     }
       str++; 
@@ -45,7 +45,7 @@ char to_lower(char* str){
 int main(){
     char word_hash[500000] = {0};
     char cmd[10] = {};
-    char str[10] = {};
+    char str[10] = {"AVICHAI"};
     while (true){
         printf("$ ");
         scanf("%s",cmd);
@@ -56,16 +56,17 @@ int main(){
         scanf("%s",str);
         if (!strcmp(cmd,"ADD") && (is_legal_word(str) == 1)){
             printf("ADD BLOCK\n");
-            break;
+            
         }
         else if (!strcmp(cmd,"CHECK") && (is_legal_word(str) == 1)){
             printf("CHECK BLOCK\n");
-            break;
+            
         }
 
         else
         {
             printf("illegal command\n");
+            fflush(stdin);
         }
         
 
