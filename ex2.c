@@ -14,7 +14,7 @@ int hash_arr(const char* str){
 }
 
 int hash_ptr(const char* str){
-     int c = 0;
+    int c = 0;
     unsigned long h = 5381;
     while (*str != '\0'){
         int c = *str;
@@ -79,15 +79,3 @@ int main(){
     }
     return 0;
 }
-
-/* RUN EXAMPLE :
-$ ADD hello
-$ CHECK HELLO
-exists
-$ CHECK world
-does not exist
-$ ADD 123
-illegal command
-$ KUKU hello
-illegal command
-$ EXIT*/
