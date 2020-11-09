@@ -4,15 +4,17 @@
 #include <string.h>
 
 int hash_arr(const char* str){
+    int c = 0;
     unsigned long h = 5381;
     for (int i =0; str[i] != '\0'; i++){
-        int c = str[i];
+        c = str[i];
         h = h*33+c;
     }
     return h;
 }
 
 int hash_ptr(const char* str){
+     int c = 0;
     unsigned long h = 5381;
     while (*str != '\0'){
         int c = *str;
