@@ -46,7 +46,7 @@ void word_tolower(char* str){
 int main(){
     char word_hash[500000] = {0};
     char cmd[10] = {};
-    char str[10] = {};
+    char str[64] = {};
     while (true){
         unsigned long i = 0;
         printf("$ ");
