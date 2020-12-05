@@ -1,9 +1,10 @@
 #ifndef PROTSTATS_H
 #define PROTSTATS_H
+
 struct ProtStats
 {
     char[32] name;
-    int[200] length;
+    int length;
     double[3] aa_freq;
     enum aa_type {Hydrophobic,Charged,Polar};
 };
