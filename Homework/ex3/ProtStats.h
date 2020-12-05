@@ -6,8 +6,8 @@ struct ProtStats
     char[32] name;
     int length;
     double[3] aa_freq;
-    enum aa_type {Hydrophobic,Charged,Polar};
 };
+enum aa_type {Hydrophobic,Charged,Polar};
 
 int num_prots(Char* fasta_file_name);
 
