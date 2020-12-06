@@ -3,9 +3,13 @@
 #include <stdlib.h>
 #include <string.h>
 int num_prots(char* fasta_file_name){ // WORKING
-  char line[256];
+    char line[256];
     int num_of_prots = 0;
     FILE* file = fopen(fasta_file_name, "r");
+    if(!(file)){
+        fprintf(stderr,"failed to open file %s\n",fasta_file_name);
+        exit(-1);
+    }
     while (fgets(line, sizeof(line), file)) {
         if (line[0] == '>')
         {
