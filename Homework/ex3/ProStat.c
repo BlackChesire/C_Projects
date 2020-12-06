@@ -35,6 +35,8 @@ ProtStats* ProtStatsCreate(char* protname,char* protlength){ //WORKING
 int length = strlen(protlength);
 int hydro = 0 , charged = 0 ,polar = 0;
   ProtStats *prot = (ProtStats*)calloc(sizeof(ProtStats),1);
+   if(prot == NULL)
+       return NULL;
   strcpy(prot->name,protname);
   prot->length = length;
   for (int i =0; protlength[i] != '\0'; i++){
