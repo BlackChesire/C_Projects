@@ -1,19 +1,19 @@
 #ifndef PROTSTATS_H
 #define PROTSTATS_H
 
-struct ProtStats
+ typedef struct
 {
-    char[32] name;
+    char name[32];
     int length;
-    double[3] aa_freq;
-};
-enum aa_type {Hydrophobic,Charged,Polar};
+    double aa_freq[3];
+}ProtStats;
+typedef enum {Hydrophobic,Charged,Polar} aa_type;
 
-int num_prots(Char* fasta_file_name);
+int num_prots(char* fasta_file_name);
 
-ProtStats* ProtStatsCreate(Char* protname,int protlength);
+ProtStats* ProtStatsCreate(char* protname,int protlength);
 
-void ProtStatsInit(Char* protname,int protLength,ProtStats* protID);
+void ProtStatsInit(char* protname,int protLength,ProtStats* protID);
 
 void ProtStatsCopy(ProtStats* protID1, ProtStats* protID2);
 
