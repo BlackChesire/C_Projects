@@ -5,15 +5,15 @@
 {
     char name[32];
     int length;
-    double aa_freq[3];
+    double aa_freq[3]; //hydro polar charged
 }ProtStats;
 typedef enum {Hydrophobic,Charged,Polar} aa_type;
 
 int num_prots(char* fasta_file_name);
 
-ProtStats* ProtStatsCreate(char* protname,int protlength);
+ProtStats* ProtStatsCreate(char* protname,char* protlength);
 
-void ProtStatsInit(char* protname,int protLength,ProtStats* protID);
+void ProtStatsInit(char* protname,char* protlength,ProtStats* protID);
 
 void ProtStatsCopy(ProtStats* protID1, ProtStats* protID2);
 
