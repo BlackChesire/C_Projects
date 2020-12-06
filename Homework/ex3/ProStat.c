@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 int num_prots(char* fasta_file_name){ // WORKING
+size_t maxl = 256; // in order to allocate memory for line
 char *line = malloc(maxl * sizeof(char));
 if(!line){
     printf("Memory not allocated!!\n");
