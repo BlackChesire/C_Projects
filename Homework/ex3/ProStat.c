@@ -3,12 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-/*
-hydrophobic (A I L F V P G)
-charged (R K D E)
-polar (Q N H S T Y C M W)
-*/
-int num_prots(char* fasta_file_name){ // WORKING
+int num_prots(char* fasta_file_name){ // checking the amount of prots in fasta files
 size_t maxl = 256; // in order to allocate memory for line
 char *line = malloc(maxl * sizeof(char));
 if(!line){
@@ -32,57 +27,54 @@ if(!line){
     return num_of_prots;
 } 
 
-ProtStats* ProtStatsCreate(char* protname,char* protlength){ //WORKING
-int length = strlen(protlength);
+ProtStats* ProtStatsCreate(char* protname,char* protSequence){ //Creating a Prostats data info by the name and the sequence
+int length = strlen(protSequence);
 int hydro = 0 , charged = 0 ,polar = 0;
   ProtStats *prot = (ProtStats*)calloc(sizeof(ProtStats),1);
    if(prot == NULL)
        return NULL;
   strcpy(prot->name,protname);
   prot->length = length;
-  for (int i =0; protlength[i] != '\0'; i++){
-      if (protlength[i] == 'A' || protlength[i] == 'I' || protlength[i] == 'L' || protlength[i] == 'F' || protlength[i] == 'V' || protlength[i] == 'P' || protlength[i] == 'G')
+    for (int i =0; protSequence[i] != '\0'; i++){ 
+      switch (find_type(protSequence[i]))
       {
-         hydro++;
+          case Hydrophobic:
+            hydro++;
+          break;
+          case Charged:
+            charged++;
+            break;
+          case Polar:
+            polar++;
       }
-      else if (protlength[i] == 'R' || protlength[i] == 'K' || protlength[i] =='D' || protlength[i] == 'E')
-      {
-          charged++;
-      }
-      else if (protlength[i] == 'Q' || protlength[i] == 'N' || protlength[i] == 'H' || protlength[i] == 'S' || protlength[i] == 'T' || protlength[i] == 'Y' || protlength[i] == 'C' || protlength[i] == 'M' || protlength[i] == 'W')
-      {
-          polar++;
-      }
-   
   }
-      prot->aa_freq[0] = (float)hydro / length *100;
-      prot->aa_freq[1] = (float)charged / length *100;
-      prot->aa_freq[2] = (float)polar/ length *100;
+      prot->aa_freq[Hydrophobic] = (float)hydro / length *100;
+      prot->aa_freq[Charged] = (float)charged / length *100;
+      prot->aa_freq[Polar] = (float)polar/ length *100;
   return prot;
 }
-void ProtStatsInit(char* protname,char* protlength,ProtStats* protID){
+void ProtStatsInit(char* protname,char* protSequence,ProtStats* protID){
     int hydro=0,charged=0,polar=0;
-    int length = strlen(protlength);
+    int length = strlen(protSequence);
     strcpy(protID->name,protname);
-    protID->length = strlen(protlength);
-    for (int i =0; protlength[i] != '\0'; i++){
-      if (protlength[i] == 'A' || protlength[i] == 'I' || protlength[i] == 'L' || protlength[i] == 'F' || protlength[i] == 'V' || protlength[i] == 'P' || protlength[i] == 'G')
+    protID->length = strlen(protSequence);
+    for (int i =0; protSequence[i] != '\0'; i++){ 
+      switch (find_type(protSequence[i]))
       {
-         hydro++;
+          case Hydrophobic:
+            hydro++;
+          break;
+          case Charged:
+            charged++;
+            break;
+          case Polar:
+            polar++;
       }
-      else if (protlength[i] == 'R' || protlength[i] == 'K' || protlength[i] =='D' || protlength[i] == 'E')
-      {
-          charged++;
-      }
-      else if (protlength[i] == 'Q' || protlength[i] == 'N' || protlength[i] == 'H' || protlength[i] == 'S' || protlength[i] == 'T' || protlength[i] == 'Y' || protlength[i] == 'C' || protlength[i] == 'M' || protlength[i] == 'W')
-      {
-          polar++;
-      }
-      protID->aa_freq[0] = ((float)hydro / length) * 100;
-      protID->aa_freq[1] = ((float)charged / length) * 100;
-      protID->aa_freq[2] = ((float)polar / length) * 100;
-   
     }
+      protID->aa_freq[Hydrophobic] = ((float)hydro / length) * 100;
+      protID->aa_freq[Polar] = ((float)polar / length) * 100;
+      protID->aa_freq[Charged] = ((float)charged / length) * 100;
+      
 }
 
 void ProtStatsCopy(ProtStats* prot1, ProtStats* prot2) {

@@ -8,13 +8,13 @@
     int length;
     double aa_freq[3]; //hydro polar charged
 }ProtStats;
-typedef enum {Hydrophobic, Polar, Charged} aa_type;
+typedef enum {Hydrophobic, Charged, Polar} aa_type;
 
 int num_prots(char* fasta_file_name);
 
-ProtStats* ProtStatsCreate(char* protname,char* protlength);
+ProtStats* ProtStatsCreate(char* protname,char* protSequence);
 
-void ProtStatsInit(char* protname,char* protlength,ProtStats* protID);
+void ProtStatsInit(char* protname,char* protSequence,ProtStats* protID);
 
 void ProtStatsCopy(ProtStats* protID1, ProtStats* protID2);
 
