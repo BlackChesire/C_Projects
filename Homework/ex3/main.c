@@ -4,7 +4,7 @@
 #include <stdlib.h>
 int main(int argc, char *argv[]){
     if(argc != 2){
-        fprintf(stderr,"\nUsage : %s <file-name>\n",argv[0]); // to make sure argv[1] is fasta file !
+        fprintf(stderr,"\nUsage : %s <fastafile>\n",argv[0]); // to make sure argv[1] is fasta file !
         return 1;
     }
     int n =0;
