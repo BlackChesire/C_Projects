@@ -27,15 +27,15 @@ int num_prots(char* fasta_file_name){ // checking the amount of prots in fasta f
     return num_of_prots;
 } 
 
-ProtStats* ProtStatsCreate(char* protname,char* protSequence){ //Creating a Prostats data info by the name and the sequence
+ProtStats* ProtStatsCreate(char* protname,char* protSequence){ //Creating a Protstats data info by name & sequence
     ProtStats *prot = (ProtStats*)calloc(sizeof(ProtStats),1);
     if(prot == NULL)
         return NULL;
     ProtStatsInit(protname, protSequence, prot);
     return prot;
 }
-void ProtStatsInit(char* protname,char* protSequence,ProtStats* protID){
-    int hydro=0,charged=0,polar=0;
+void ProtStatsInit(char* protname,char* protSequence,ProtStats* protID){ // initializing protstats date info to the sent address
+    int hydro=0,charged=0,polar=0; // types of amino acid
     int length = strlen(protSequence);
     strcpy(protID->name,protname);
     protID->length = strlen(protSequence);
@@ -86,7 +86,7 @@ void ProtStatsSwap(ProtStats* prot1, ProtStats* prot2) {
     free(temp);
 }
 
-ProtStats* read_fasta_file(char* fastafilename,  unsigned int* number) {
+ProtStats* read_fasta_file(char* fastafilename,  unsigned int* number) { // reading prots from fasta file and initializing prots data info
     FILE* file = fopen(fastafilename, "r");
     char* buffer = NULL; 
     size_t bufsize = 0;
@@ -113,9 +113,9 @@ ProtStats* read_fasta_file(char* fastafilename,  unsigned int* number) {
     return prots;
 }
 
-aa_type find_type(char charAminoAcids){
-    if(strchr("AILFVPG", charAminoAcids) != NULL) {
-        return Hydrophobic;
+aa_type find_type(char charAminoAcids){ // finding the type of the Amino by the letter received 
+    if(strchr("AILFVPG", charAminoAcids) != NULL) { 
+        return Hydrophobic; 
     }    
     else if(strchr("QNHSTYCMW", charAminoAcids) != NULL) {
         return Polar;
