@@ -86,7 +86,7 @@ void ProtStatsCopy(ProtStats* prot1, ProtStats* prot2) {
 }
 
 void ProtStatsSwap(ProtStats* prot1, ProtStats* prot2) {
-    ProtStats* temp = NULL; //free???????????????????????????????????
+    ProtStats* temp = NULL; //free??????????????????????????????????? yes
     //swap the prot's name
     strcpy(temp->name, prot1->name);
     strcpy(prot1->name, prot2->name);
@@ -108,7 +108,7 @@ ProtStats* read_fasta_file(char* fastafilename,  unsigned int* number) {
     char* buffer = NULL; 
     size_t bufsize = 0;
     *number = num_prots(fastafilename);
-    ProtStats* prots = (ProtStats*) malloc(sizeof(ProtStats)*(*number)); //malloc - free!!!
+    ProtStats* prots = (ProtStats*) malloc(sizeof(ProtStats)*(*number)); //malloc - free!!! no
     
     if(file == NULL) {
         fprintf(stderr, "Error, invilable to open the file %s, line: %d\n", __FILE__, __LINE__);
@@ -116,15 +116,16 @@ ProtStats* read_fasta_file(char* fastafilename,  unsigned int* number) {
     }
     for(int i=0; i < *number; i++) {
         if(getline(&buffer, &bufsize, file) != EOF) {
-            char* name = strdup(buffer); //free!!!???????????
+            char* name = strdup(buffer); //free!!!??????????? yes
             name[strlen(name)-1]='\0';
             if(getline(&buffer, &bufsize, file) != EOF) {
                 buffer[strlen(buffer)-1]='\0';
                 ProtStatsInit(name+1, buffer, prots+i);
             }
+            free(name);
         }
     }
-    free(buffer);//neeedeed>??????????????????
+    free(buffer);//neeedeed>?????????????????? yes 
     fclose(file);
     return prots;
 }

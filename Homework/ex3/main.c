@@ -14,6 +14,6 @@ int main(int argc, char *argv[]){
     for(int i=0; i < n; i++) {
         printf("%d\t%s\t%d\t%.1lf\t%.1lf\t%.1lf\n",i+1,a[i].name,a[i].length,a[i].aa_freq[0],a[i].aa_freq[1],a[i].aa_freq[2]);
     }
-    free(a);
+    free(a); // memeory freed also in prostat.c by the function. zero memory leaks checked by "valgrind"
     return 0;
 }
