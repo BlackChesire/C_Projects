@@ -6,7 +6,7 @@
 
 int num_prots(char* fasta_file_name){ // checking the amount of prots in fasta files
     size_t maxl = 256; // in order to allocate memory for line
-    char *line = malloc(maxl * sizeof(char)); //malloc - free!!
+    char *line = malloc(maxl * sizeof(char));
     if(!line){
         printf("Error, memory not allocated!\n");
         return -2;
@@ -114,7 +114,7 @@ ProtStats* read_fasta_file(char* fastafilename,  unsigned int* number) {
     char* buffer = NULL; 
     size_t bufsize = 0;
     *number = num_prots(fastafilename);
-    ProtStats* prots = (ProtStats*) malloc(sizeof(ProtStats)*(*number)); //malloc - free!!! no
+    ProtStats* prots = (ProtStats*) malloc(sizeof(ProtStats)*(*number));
     
     if(file == NULL) {
         fprintf(stderr, "Error, invilable to open the file %s, line: %d\n", __FILE__, __LINE__);
@@ -122,7 +122,7 @@ ProtStats* read_fasta_file(char* fastafilename,  unsigned int* number) {
     }
     for(int i=0; i < *number; i++) {
         if(getline(&buffer, &bufsize, file) != EOF) {
-            char* name = strdup(buffer); //free!!!??????????? yes
+            char* name = strdup(buffer);
             name[strlen(name)-1]='\0';
             if(getline(&buffer, &bufsize, file) != EOF) {
                 buffer[strlen(buffer)-1]='\0';
@@ -131,7 +131,7 @@ ProtStats* read_fasta_file(char* fastafilename,  unsigned int* number) {
             free(name);
         }
     }
-    free(buffer);//neeedeed>?????????????????? yes 
+    free(buffer);
     fclose(file);
     return prots;
 }
