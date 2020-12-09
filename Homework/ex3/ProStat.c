@@ -30,7 +30,7 @@ int num_prots(char* fasta_file_name){ // checking the amount of prots in fasta f
 ProtStats* ProtStatsCreate(char* protname,char* protSequence){ //Creating a Prostats data info by the name and the sequence
     int length = strlen(protSequence);
     int hydro = 0 , charged = 0 ,polar = 0;
-    ProtStats *prot = (ProtStats*)calloc(sizeof(ProtStats),1); //calloc - free!!
+    ProtStats *prot = (ProtStats*)calloc(sizeof(ProtStats),1);
     if(prot == NULL)
         return NULL;
     strcpy(prot->name,protname);
@@ -77,29 +77,35 @@ void ProtStatsInit(char* protname,char* protSequence,ProtStats* protID){
 }
 
 void ProtStatsCopy(ProtStats* prot1, ProtStats* prot2) {
-    strcpy(prot1->name, prot2->name); //copy the prot2 name to the prot1 name
+    
+    prot1->name = strdup(prot2->name); //copy the prot2 name to the prot1 name
     prot1->length = prot2->length; //copy the prot2 length to the prot1 length
     //copy the prot2 aa_freq to the prot1 aa_freq
     prot1->aa_freq[Hydrophobic] = prot2->aa_freq[Hydrophobic];
-    prot1->aa_freq[Polar] = prot2->aa_freq[Polar];
     prot1->aa_freq[Charged] = prot2->aa_freq[Charged];
+    prot1->aa_freq[Polar] = prot2->aa_freq[Polar];
 }
 
 void ProtStatsSwap(ProtStats* prot1, ProtStats* prot2) {
-    ProtStats* temp = NULL; //free??????????????????????????????????? yes
+    char* str =NULL;
+    int num = 0;
+    double val = 0;
     //swap the prot's name
-    strcpy(temp->name, prot1->name);
-    strcpy(prot1->name, prot2->name);
-    strcpy(prot2->name, temp->name);
+    str = strdup(prot1->name);
+    free(prot1->name);
+    prot1->name = strdup(prot2->name);
+    free(prot2->name);
+    prot2->name = strdup(str);
+    free(str);
     //swap the prot's length
-    temp->length = prot1->length;
+    num = prot1->length;
     prot1->length = prot2->length;
-    prot2->length = temp->length;
+    prot2->length = num;
     //swap the prot's aa_freq
-    for(int aminoAc=0; aminoAc <= Polar; aminoAc++) {
-        temp->aa_freq[aminoAc] = prot1->aa_freq[aminoAc];
+    for(int aminoAc=0; aminoAc <= Polar; aminoAc++) { //loop1: aminoAc=Hydrophobic , loop2: aminoAc=Charged, loop3: aminoAc=Polar
+        val = prot1->aa_freq[aminoAc];
         prot1->aa_freq[aminoAc] = prot2->aa_freq[aminoAc];
-        prot2->aa_freq[aminoAc] = temp->aa_freq[aminoAc];
+        prot2->aa_freq[aminoAc] = val;
     }
 }
 
