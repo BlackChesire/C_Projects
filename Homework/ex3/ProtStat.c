@@ -1,4 +1,4 @@
-//Avichai Aziz 316373497 & Asaf Ben Shabat 312391774
+//Avichai Aziz 316373497 & Asaf Ben Shabat 312391774.
 #include "ProtStats.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -28,29 +28,10 @@ int num_prots(char* fasta_file_name){ // checking the amount of prots in fasta f
 } 
 
 ProtStats* ProtStatsCreate(char* protname,char* protSequence){ //Creating a Prostats data info by the name and the sequence
-    int length = strlen(protSequence);
-    int hydro = 0 , charged = 0 ,polar = 0;
     ProtStats *prot = (ProtStats*)calloc(sizeof(ProtStats),1);
     if(prot == NULL)
         return NULL;
-    strcpy(prot->name,protname);
-    prot->length = length;
-    for (int i =0; protSequence[i] != '\0'; i++){ 
-        switch (find_type(protSequence[i])) {
-            case Hydrophobic:
-                hydro++;
-                break;
-            case Charged:
-                charged++;
-                break;
-            case Polar:
-                polar++;
-                break;
-        }
-    }
-    prot->aa_freq[Hydrophobic] = (float)hydro / length *100;
-    prot->aa_freq[Charged] = (float)charged / length *100;
-    prot->aa_freq[Polar] = (float)polar/ length *100;
+    ProtStatsInit(protname, protSequence, prot);
     return prot;
 }
 void ProtStatsInit(char* protname,char* protSequence,ProtStats* protID){
@@ -71,42 +52,38 @@ void ProtStatsInit(char* protname,char* protSequence,ProtStats* protID){
                 break;
         }
     }
-      protID->aa_freq[Hydrophobic] = ((float)hydro / length) * 100;
-      protID->aa_freq[Polar] = ((float)polar / length) * 100;
-      protID->aa_freq[Charged] = ((float)charged / length) * 100;  
+    protID->aa_freq[Hydrophobic] = ((float)hydro / length) * 100;
+    protID->aa_freq[Polar] = ((float)polar / length) * 100;
+    protID->aa_freq[Charged] = ((float)charged / length) * 100;  
 }
 
 void ProtStatsCopy(ProtStats* prot1, ProtStats* prot2) {
-    
-    prot1->name = strdup(prot2->name); //copy the prot2 name to the prot1 name
+    strcpy(prot1->name, prot2->name); //copy the prot2 name to the prot1 name
     prot1->length = prot2->length; //copy the prot2 length to the prot1 length
     //copy the prot2 aa_freq to the prot1 aa_freq
     prot1->aa_freq[Hydrophobic] = prot2->aa_freq[Hydrophobic];
-    prot1->aa_freq[Charged] = prot2->aa_freq[Charged];
     prot1->aa_freq[Polar] = prot2->aa_freq[Polar];
+    prot1->aa_freq[Charged] = prot2->aa_freq[Charged];
+
 }
 
 void ProtStatsSwap(ProtStats* prot1, ProtStats* prot2) {
-    char* str =NULL;
-    int num = 0;
-    double val = 0;
+    ProtStats* temp = (ProtStats*)calloc(sizeof(ProtStats),1);
     //swap the prot's name
-    str = strdup(prot1->name);
-    free(prot1->name);
-    prot1->name = strdup(prot2->name);
-    free(prot2->name);
-    prot2->name = strdup(str);
-    free(str);
+    strcpy(temp->name, prot1->name);
+    strcpy(prot1->name, prot2->name);
+    strcpy(prot2->name, temp->name);
     //swap the prot's length
-    num = prot1->length;
+    temp->length = prot1->length;
     prot1->length = prot2->length;
-    prot2->length = num;
+    prot2->length = temp->length;
     //swap the prot's aa_freq
-    for(int aminoAc=0; aminoAc <= Polar; aminoAc++) { //loop1: aminoAc=Hydrophobic , loop2: aminoAc=Charged, loop3: aminoAc=Polar
-        val = prot1->aa_freq[aminoAc];
+    for(int aminoAc=0; aminoAc <= Polar; aminoAc++) {
+        temp->aa_freq[aminoAc] = prot1->aa_freq[aminoAc];
         prot1->aa_freq[aminoAc] = prot2->aa_freq[aminoAc];
-        prot2->aa_freq[aminoAc] = val;
+        prot2->aa_freq[aminoAc] = temp->aa_freq[aminoAc];
     }
+    free(temp);
 }
 
 ProtStats* read_fasta_file(char* fastafilename,  unsigned int* number) {

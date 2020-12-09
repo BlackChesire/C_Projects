@@ -1,4 +1,4 @@
-//Avichai Aziz 316373497 & Asaf Ben Shabat 312391774
+//Avichai Aziz 316373497 & Asaf Ben Shabat 312391774.
 #ifndef PROTSTATS_H
 #define PROTSTATS_H
 
