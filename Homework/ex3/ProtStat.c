@@ -1,4 +1,4 @@
-//Avichai Aziz 316373497 & Asaf Ben Shabat 312391774.
+#define _GNU_SOURCE // clears all servers warnings
 #include "ProtStats.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,7 +9,7 @@ int num_prots(char* fasta_file_name){ // checking the amount of prots in fasta f
     char *line = malloc(maxl * sizeof(char));
     if(!line){
         printf("Error, memory not allocated!\n");
-        return -2;
+        exit(-2);
     }
     int num_of_prots = 0;
     FILE* file = fopen(fasta_file_name, "r");
@@ -30,6 +30,7 @@ int num_prots(char* fasta_file_name){ // checking the amount of prots in fasta f
 ProtStats* ProtStatsCreate(char* protname,char* protSequence){ //Creating a Protstats data info by name & sequence
     ProtStats *prot = (ProtStats*)calloc(sizeof(ProtStats),1);
     if(prot == NULL)
+        printf("cloudnt allocate memory for the prots data!");
         return NULL;
     ProtStatsInit(protname, protSequence, prot);
     return prot;
@@ -69,6 +70,9 @@ void ProtStatsCopy(ProtStats* prot1, ProtStats* prot2) {
 
 void ProtStatsSwap(ProtStats* prot1, ProtStats* prot2) {
     ProtStats* temp = (ProtStats*)calloc(sizeof(ProtStats),1);
+        if(temp == NULL)
+        printf("cloudnt allocate memory for the prots data!");
+        exit(-3);
     //swap the prot's name
     strcpy(temp->name, prot1->name);
     strcpy(prot1->name, prot2->name);
@@ -92,24 +96,24 @@ ProtStats* read_fasta_file(char* fastafilename,  unsigned int* number) { // read
     size_t bufsize = 0;
     *number = num_prots(fastafilename);
     ProtStats* prots = (ProtStats*) malloc(sizeof(ProtStats)*(*number));
-    
+    char* name = (char*) malloc(sizeof(char)*(32));
     if(file == NULL) {
-        fprintf(stderr, "Error, invilable to open the file %s, line: %d\n", __FILE__, __LINE__);
+        fprintf(stderr, "Error, failed to open the file %s, line: %d\n", __FILE__, __LINE__);
         return NULL;
     }
     for(int i=0; i < *number; i++) {
         if(getline(&buffer, &bufsize, file) != EOF) {
-            char* name = strdup(buffer);
+            strcpy(name,buffer);
             name[strlen(name)-1]='\0';
             if(getline(&buffer, &bufsize, file) != EOF) {
                 buffer[strlen(buffer)-1]='\0';
                 ProtStatsInit(name+1, buffer, prots+i);
             }
-            free(name);
         }
     }
-    free(buffer);
     fclose(file);
+    free(name);
+    free(buffer);
     return prots;
 }
 

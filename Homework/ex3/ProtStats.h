@@ -1,4 +1,4 @@
-//Avichai Aziz 316373497 & Asaf Ben Shabat 312391774.
+#define _GNU_SOURCE // clears all servers warnings
 #ifndef PROTSTATS_H
 #define PROTSTATS_H
 
