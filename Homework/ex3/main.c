@@ -8,7 +8,7 @@ int main(int argc, char *argv[]){
         fprintf(stderr,"\nUsage : %s <fastafile>\n",argv[0]); // to make sure argv[1] is fasta file !
         return 1;
     }
-    int n =0;
+    unsigned int n =0;
     ProtStats *ProtStat_data = read_fasta_file(argv[1],&n);
     if(ProtStat_data == NULL){
         printf("cloudnt allocate memory for the fasta file !");

@@ -4,24 +4,25 @@
 
  typedef struct
 {
-    char name[32];
+    char name[33];
     int length;
     double aa_freq[3]; //hydro polar charged
 }ProtStats;
-typedef enum {Hydrophobic, Charged, Polar} aa_type;
 
-int num_prots(char* fasta_file_name);
+typedef enum {Hydrophobic, Charged, Polar} aa_type; //enumarted types of amino acid
 
-ProtStats* ProtStatsCreate(char* protname,char* protSequence);
+int num_prots(char* fasta_file_name); // counting the number of prots in fasta file
 
-void ProtStatsInit(char* protname,char* protSequence,ProtStats* protID);
+ProtStats* ProtStatsCreate(char* protname,char* protSequence); // creating a protein data
 
-void ProtStatsCopy(ProtStats* protID1, ProtStats* protID2);
+void ProtStatsInit(char* protname,char* protSequence,ProtStats* protID); // initialize protein data to the address delivered
 
-void ProtStatsSwap(ProtStats* protID1, ProtStats* protID2);
+void ProtStatsCopy(ProtStats* protID1, ProtStats* protID2); // copying data of protein data to another
 
-ProtStats* read_fasta_file(char* fastafilename,unsigned int* number);
+void ProtStatsSwap(ProtStats* protID1, ProtStats* protID2);// swapping data of protein datas
 
-aa_type find_type(char type);
+ProtStats* read_fasta_file(char* fastafilename,unsigned int* number); // collects  and creates data from protein fasata file
+
+aa_type find_type(char type); // finding the type of the amino acid by the letter delivered
 
 #endif

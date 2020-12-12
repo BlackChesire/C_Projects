@@ -8,17 +8,18 @@ int num_prots(char* fasta_file_name){ // checking the amount of prots in fasta f
     size_t maxl = 256; // in order to allocate memory for line
     char *line = malloc(maxl * sizeof(char));
     if(!line){
-        printf("Error, memory not allocated!\n");
+        fprintf(stderr,"Error, memory not allocated! file : %s line : %d\n",__FILE__, __LINE__);
         exit(-2);
     }
     int num_of_prots = 0;
     FILE* file = fopen(fasta_file_name, "r");
     if(!(file)){
         fprintf(stderr,"Error, failed to open file %s, line:%d\n",__FILE__, __LINE__);
+        free(line);
         exit(1);
     }
     while (fgets(line, sizeof(line), file)) {
-        if (line[0] == '>') {
+        if (line[0] == '>') { // everyline with prot starts with ">"  allows to count prots number
             num_of_prots++;
         }
     }
@@ -29,9 +30,10 @@ int num_prots(char* fasta_file_name){ // checking the amount of prots in fasta f
 
 ProtStats* ProtStatsCreate(char* protname,char* protSequence){ //Creating a Protstats data info by name & sequence
     ProtStats *prot = (ProtStats*)calloc(sizeof(ProtStats),1);
-    if(prot == NULL)
-        printf("cloudnt allocate memory for the prots data!");
-        return NULL;
+    if(prot == NULL){
+        fprintf(stderr,"Error, memory not allocated! file : %s line : %d\n",__FILE__, __LINE__);
+        exit(-1);
+    }
     ProtStatsInit(protname, protSequence, prot);
     return prot;
 }
@@ -41,7 +43,7 @@ void ProtStatsInit(char* protname,char* protSequence,ProtStats* protID){ // init
     strcpy(protID->name,protname);
     protID->length = strlen(protSequence);
     for (int i =0; protSequence[i] != '\0'; i++){ 
-        switch (find_type(protSequence[i])) {
+        switch (find_type(protSequence[i])) { //finding the type of the amino acid using find_type() below
             case Hydrophobic:
                 hydro++;
                 break;
@@ -53,6 +55,7 @@ void ProtStatsInit(char* protname,char* protSequence,ProtStats* protID){ // init
                 break;
         }
     }
+    // precentage convertion
     protID->aa_freq[Hydrophobic] = ((float)hydro / length) * 100;
     protID->aa_freq[Polar] = ((float)polar / length) * 100;
     protID->aa_freq[Charged] = ((float)charged / length) * 100;  
@@ -70,9 +73,10 @@ void ProtStatsCopy(ProtStats* prot1, ProtStats* prot2) {
 
 void ProtStatsSwap(ProtStats* prot1, ProtStats* prot2) {
     ProtStats* temp = (ProtStats*)calloc(sizeof(ProtStats),1);
-        if(temp == NULL)
-        printf("cloudnt allocate memory for the prots data!");
+        if(temp == NULL){
+        fprintf(stderr,"Error, memory not allocated! file : %s line : %d\n",__FILE__, __LINE__);
         exit(-3);
+        }
     //swap the prot's name
     strcpy(temp->name, prot1->name);
     strcpy(prot1->name, prot2->name);
@@ -96,10 +100,21 @@ ProtStats* read_fasta_file(char* fastafilename,  unsigned int* number) { // read
     size_t bufsize = 0;
     *number = num_prots(fastafilename);
     ProtStats* prots = (ProtStats*) malloc(sizeof(ProtStats)*(*number));
+    if(prots == NULL){
+        fprintf(stderr,"Error, memory not allocated! file : %s line : %d\n",__FILE__, __LINE__);
+        free(buffer);
+        free(file);
+        free(number);
+        exit(-3);
+    }
     char* name = (char*) malloc(sizeof(char)*(32));
     if(file == NULL) {
         fprintf(stderr, "Error, failed to open the file %s, line: %d\n", __FILE__, __LINE__);
-        return NULL;
+        free(buffer);
+        free(file);
+        free(number);
+        free(prots);
+        exit(-3);
     }
     for(int i=0; i < *number; i++) {
         if(getline(&buffer, &bufsize, file) != EOF) {
