@@ -10,10 +10,6 @@ int main(int argc, char *argv[]){
     }
     unsigned int n =0;
     ProtStats *ProtStat_data = read_fasta_file(argv[1],&n);
-    if(ProtStat_data == NULL){
-        printf("cloudnt allocate memory for the fasta file !");
-        return -2;
-    }
     printf("N\tName\tLength\tHydro\tCharged\tPolar\n"); // print file format
     for(int i=0; i < n; i++) {
         printf("%d\t%s\t%d\t%.1lf\t%.1lf\t%.1lf\n",i+1,ProtStat_data[i].name,ProtStat_data[i].length,ProtStat_data[i].aa_freq[0],ProtStat_data[i].aa_freq[1],ProtStat_data[i].aa_freq[2]);
