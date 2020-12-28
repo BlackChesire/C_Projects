@@ -8,8 +8,10 @@ struct Array{
 };
 
 Array ArrayCreate(int arraysize,Element (*cpy)(Element), void (*fre)(Element)){
-    Array array = (Array)malloc(sizeof(struct Array));
-    array->ls = LLCreate(cpy,fre);
+    if(arraysize > MAX_ARRAY_SIZE)
+    fprintf(stderr,"the size you requesting for the array is too big ! file %s, line:%d\n",__FILE__, __LINE__);
+    Array array = (Array)malloc(sizeof(struct Array)); // freed by ArrayDestroy
+    array->ls = LLCreate(cpy,fre); // allocate NULL as requsted.
     for(int i=0; i<arraysize;i++){
         LLAdd(array->ls, i, NULL);
     }
