@@ -39,7 +39,7 @@ void ArrayResize(Array array,int new_array_size) {
         unsigned int index = ArraySize(array);
         while(index >= new_array_size) {
             LLAdd(array->ll, index, NULL);
-            index++;
+            index++; 
         }
     }
 
