@@ -5,7 +5,7 @@
 
 struct Array{
 	LinkedList ll;
-};
+}; 
 
 Array ArrayCreate(int arraysize,Element (*cpy)(Element), void (*fre)(Element)){
     if(arraysize > MAX_ARRAY_SIZE)
