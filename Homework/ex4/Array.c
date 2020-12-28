@@ -11,6 +11,10 @@ Array ArrayCreate(int arraysize,Element (*cpy)(Element), void (*fre)(Element)){
     if(arraysize > MAX_ARRAY_SIZE)
     fprintf(stderr,"the size you requesting for the array is too big ! file %s, line:%d\n",__FILE__, __LINE__);
     Array array = (Array)malloc(sizeof(struct Array)); // freed by ArrayDestroy
+    if(!array){
+    fprintf(stderr,"Error, memory not allocated! file : %s line : %d\n",__FILE__, __LINE__);
+        exit(-2);
+    }   
     array->ll = LLCreate(cpy,fre); // allocate NULL as requsted.
     for(int i=0; i<arraysize;i++){
         LLAdd(array->ll, i, NULL);
@@ -54,7 +58,10 @@ Element ArrayGet(Array array,int index) {
     }
     
     Array temp_array = malloc(sizeof(struct Array));
-
+      if(!temp_array){
+    fprintf(stderr,"Error, memory not allocated! file : %s line : %d\n",__FILE__, __LINE__);
+        exit(-2);
+    }   
     int i = ArraySize(array);
     while(i != index) {
         LLRemove(temp_array->ll, i);
