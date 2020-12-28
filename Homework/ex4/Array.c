@@ -49,5 +49,20 @@ void ArrayResize(Array array,int new_array_size) {
 }
 
 Element ArrayGet(Array array,int index) {
-    return array->ll
+    if(index > ArraySize(array)) {
+        fprintf(stderr, "Error, over range exception, %d is too big, __FILE__, __LINE__", index);
+    }
+    
+    Array temp_array = malloc(sizeof(struct Array));
+
+    int i = ArraySize(array);
+    while(i != index) {
+        LLRemove(temp_array->ll, i);
+        i--;
+    }
+    Element element = LLRemove(temp_array->ll, index);
+    free(temp_array);
+    return element;
 }
+
+
