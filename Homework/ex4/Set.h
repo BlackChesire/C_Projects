@@ -5,9 +5,7 @@
 typedef void* Element;
 typedef struct set_rec* Set;
 
-Set            SetCreate(Element (*cpy)(Element),
-                         void (*fre)(Element),
-                         bool (*cmp)(Element, Element));
+Set            SetCreate(Element (*cpy)(Element),void (*fre)(Element),bool (*cmp)(Element, Element));
 void            SetDestroy(Set);
 void            SetAdd(Set, Element);
 void           SetRemove(Set, Element);
