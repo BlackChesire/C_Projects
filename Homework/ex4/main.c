@@ -55,8 +55,9 @@ Element strCopy(Element element){
 	return newStr;
 }
 bool strCompare(Element e1,Element e2){
-    if((strcmp(e1,e2) != 0) || (e1 == NULL) || (e2 == NULL))
+    if((e1 == NULL) || (e2 == NULL))
     return false;
-
+    else if((strcmp(e1,e2) != 0))
+    return false;
     return true;
 }
