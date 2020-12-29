@@ -7,39 +7,6 @@
     //argv[1] - path
     //argv[2] - set
     //argv[3] - array by apperance
-int main(int argc, char *argv[]) {
-    if(argc != 4) {
-        fprintf(stderr, "Usage: %s <in-file> <out-unique> <out-order>\n",argv[0]);
-    }
-    Array array_date =  ArrayCreate(0,strCopy, free);
-    Set set_date = SetCreate(strCopy,free,strCompare);
-    FILE* file = fopen(argv[1], "r");
-    FILE* file_set_out = fopen(argv[2], "w");
-    FILE* file_array_out = fopen(argv[3], "w");
-    char* buffer = NULL;
-    size_t buffer_size= 0;
-    char* line;
-    int line_counter = 0;
-    while(getline(&buffer, &buffer_size, file) != EOF) {
-        char* line = *buffer;
-        }
-        if(is_legal_date(line)) {
-           Arrayput(array_date,line,line_counter); 
-           SetAdd(set_date, line);
-
-        }
-        line_counter++;
-    /** TODO
-     * writing the outpit to the files.
-     */ 
-    fclose(file);
-    fclose(file_set_out);
-    fclose(file_array_out);
-    return 0;
-    }
-    
-
-
 int is_legal_date(const char *str) { //checks if the pattern is day/month/year 
   regex_t reg;
   int val = regcomp(&reg, "^[0-9]\\{1,2\\}/[0-9]\\{1,2\\}/[0-9]\\{1,4\\}$",REG_NEWLINE); // REG_NEWLINE is a flag to avoid \n
@@ -61,3 +28,35 @@ bool strCompare(Element e1,Element e2){
     return false;
     return true;
 }
+
+int main(int argc, char *argv[]) {
+    if(argc != 4) {
+        fprintf(stderr, "Usage: %s <in-file> <out-unique> <out-order>\n",argv[0]);
+    }
+    Array array_date =  ArrayCreate(0,strCopy, free);
+    Set set_date = SetCreate(strCopy,free,strCompare);
+    FILE* file = fopen(argv[1], "r");
+    FILE* file_set_out = fopen(argv[2], "w");
+    FILE* file_array_out = fopen(argv[3], "w");
+    char* buffer = NULL;
+    size_t buffer_size= 0;
+    char* line;
+    int line_counter = 0;
+    while(getline(&buffer, &buffer_size, file) != EOF) {
+        char* line = buffer;
+        }
+        if(is_legal_date(line)) {
+           Arrayput(array_date,line,line_counter); 
+           SetAdd(set_date, line);
+
+        }
+        line_counter++;
+    /** TODO
+     * writing the outpit to the files.
+     */ 
+    fclose(file);
+    fclose(file_set_out);
+    fclose(file_array_out);
+    return 0;
+    }
+    
