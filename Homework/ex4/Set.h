@@ -11,6 +11,6 @@ void SetAdd(Set, Element);
 void SetRemove(Set, Element);
 bool SetIsIn(Set, Element);
 bool SetIsEmpty(Set);
-const Element SetNext(Set); // for (Element = setfirst; E != NULL;E = setnext) // iterate
+const Element SetNext(Set);
 const Element SetFirst(Set);
 #endif

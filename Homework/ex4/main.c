@@ -64,9 +64,16 @@ int main(int argc, char *argv[])
     for (i = 0; i < ArraySize(array_date); i++)
     {
         char *date = ArrayGet(array_date, i);
-        fprintf(file_array_out, "%s", date);
+        fprintf(file_array_out, "%s\n", date);
     }
+    // for (Element = setfirst; E != NULL;E = setnext) // iterate
 
+    Element e;
+    for (e = SetFirst(set_date); e != NULL; e = SetNext(set_date))
+    {
+        char *s_date = e;
+        fprintf(file_set_out, "%s\n", s_date);
+    }
     fclose(file);
     fclose(file_set_out);
     fclose(file_array_out);
