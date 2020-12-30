@@ -1,3 +1,4 @@
+//Asaf Ben Shabat 312391774 & Avichai Aziz 316373497.
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -5,6 +6,7 @@
 #include "LinkedList.h"
 #include "Array.h"
 #include "Set.h"
+
 int is_legal_date(const char *str)
 { //checks if the pattern is day/month/year
     regex_t reg;
@@ -15,20 +17,24 @@ int is_legal_date(const char *str)
 }
 Element strCopy(Element element)
 {
-    if (!element)
+    if (!element) {
         return NULL;
+    }
     char *source = element;
     char *newStr = strdup(source);
     return newStr;
 }
 bool strCompare(Element e1, Element e2)
 {
-    if ((e1 == NULL) || (e2 == NULL))
+    if ((e1 == NULL) || (e2 == NULL)) {
         return NULL;
-    else if ((strcmp(e1, e2) != 0))
+    }
+    else if ((strcmp(e1, e2) != 0)) {
         return false;
-    else if ((strcmp(e1, e2) == 0))
+    }
+    else if ((strcmp(e1, e2) == 0)) {
         return true;
+    }
 }
 
 int main(int argc, char *argv[])
@@ -53,9 +59,9 @@ int main(int argc, char *argv[])
         char *line = buffer;
         if (is_legal_date(line))
         {
-	   Arrayput(array_date, line, j);
-	    SetAdd(set_date, line);
-	    j++;
+	        Arrayput(array_date, line, j);
+	        SetAdd(set_date, line);
+	        j++;
         }
 	line_counter++;
     }
@@ -63,11 +69,10 @@ int main(int argc, char *argv[])
     //argv[2] - set
     //argv[3] - array by apperance
     int i=0; //index
-     
     for (i = 0; i < ArraySize(array_date); i++)
     {
         char* date = ArrayGet(array_date, i);  
-	 fprintf(file_array_out, "%s", date);
+	    fprintf(file_array_out, "%s", date);
     }
     // for (Element = setfirst; E != NULL;E = setnext) // iterate
 

@@ -1,3 +1,4 @@
+//Asaf Ben Shabat 312391774 & Avichai Aziz 316373497.
 #include "LinkedList.h"
 #include "Array.h"
 #include <stdio.h>
@@ -12,6 +13,7 @@ Array ArrayCreate(int arraysize, Element (*cpy)(Element), void (*fre)(Element))
 {
     if (arraysize > MAX_ARRAY_SIZE)
         fprintf(stderr, "the size you requesting for the array is too big ! file %s, line:%d\n", __FILE__, __LINE__);
+        exit(-3);
     Array array = (Array)malloc(sizeof(struct Array)); // freed by ArrayDestroy
     if (!array)
     {
@@ -62,7 +64,7 @@ void ArrayResize(Array array, int new_array_size)
     else if (new_array_size > MAX_ARRAY_SIZE)
     {
         fprintf(stderr, "Error, the maximum size of the array is 1000000,entered: %d,File : %s, Line: %d\n", new_array_size, __FILE__, __LINE__);
-	exit(-3);
+	    exit(-3);
     }
 }
 
@@ -71,11 +73,10 @@ Element ArrayGet(Array array, int index)
     if (index > ArraySize(array))
     {
         fprintf(stderr, "Error, over range exception, %d is too big ,File : %s, Line: %d\n", index, __FILE__, __LINE__);
-	return NULL;
+	    return NULL;
     }
     Element temp_val = LLRemove(array->ll, index);
-   Arrayput(array, temp_val, index);
-
+    Arrayput(array, temp_val, index);
     return temp_val;
 }
 void Arrayput(Array array, Element element, int index)
