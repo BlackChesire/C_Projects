@@ -92,7 +92,7 @@ void Arrayput(Array array, Element element, int index)
 {
     if (index > ArraySize(array))
     {
-        ArrayResize(array, index);
+        ArrayResize(array, index + 1);
         LLAdd(array->ll, index, element);
     }
     else
