@@ -52,6 +52,7 @@ int main(int argc, char *argv[])
         char *line = buffer;
         if (is_legal_date(line))
         {
+
             Arrayput(array_date, line, line_counter);
             SetAdd(set_date, line);
         }
