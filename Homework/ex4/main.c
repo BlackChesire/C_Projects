@@ -47,24 +47,27 @@ int main(int argc, char *argv[])
     size_t buffer_size = 0;
     char *line;
     int line_counter = 0;
+    int j=0; //index
     while (getline(&buffer, &buffer_size, file) != EOF)
     {
         char *line = buffer;
         if (is_legal_date(line))
         {
-            Arrayput(array_date, line, line_counter);
-            SetAdd(set_date, line);
+	   Arrayput(array_date, line, j);
+	    SetAdd(set_date, line);
+	    j++;
         }
-        line_counter++;
+	line_counter++;
     }
     //argv[1] - path
     //argv[2] - set
     //argv[3] - array by apperance
-    int i;
+    int i=0; //index
+     
     for (i = 0; i < ArraySize(array_date); i++)
     {
-        char *date = ArrayGet(array_date, i);
-        fprintf(file_array_out, "%s\n", date);
+        char* date = ArrayGet(array_date, i);  
+	 fprintf(file_array_out, "%s", date);
     }
     // for (Element = setfirst; E != NULL;E = setnext) // iterate
 
@@ -72,7 +75,7 @@ int main(int argc, char *argv[])
     for (e = SetFirst(set_date); e != NULL; e = SetNext(set_date))
     {
         char *s_date = e;
-        fprintf(file_set_out, "%s\n", s_date);
+        fprintf(file_set_out, "%s", s_date);
     }
     fclose(file);
     fclose(file_set_out);
