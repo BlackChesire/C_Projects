@@ -51,17 +51,18 @@ void ArrayResize(Array array, int new_array_size)
 
     else if (new_array_size > ArraySize(array))
     {
-        unsigned int index = ArraySize(array);
-        while (index >= new_array_size)
+        unsigned int index2 = ArraySize(array);
+        while (index2 < new_array_size)
         {
-            LLAdd(array->ll, index, NULL);
-            index++;
+            LLAdd(array->ll, index2, NULL);
+            index2++;
         }
     }
 
     else if (new_array_size > MAX_ARRAY_SIZE)
     {
         fprintf(stderr, "Error, the maximum size of the array is 1000000,entered: %d,File : %s, Line: %d\n", new_array_size, __FILE__, __LINE__);
+	exit(-3);
     }
 }
 
@@ -70,29 +71,18 @@ Element ArrayGet(Array array, int index)
     if (index > ArraySize(array))
     {
         fprintf(stderr, "Error, over range exception, %d is too big ,File : %s, Line: %d\n", index, __FILE__, __LINE__);
+	return NULL;
     }
+    Element temp_val = LLRemove(array->ll, index);
+   Arrayput(array, temp_val, index);
 
-    Array temp_array = malloc(sizeof(struct Array));
-    if (!temp_array)
-    {
-        fprintf(stderr, "Error, memory not allocated! file : %s line : %d\n", __FILE__, __LINE__);
-        exit(-2);
-    }
-    int i = ArraySize(array);
-    while (i != index)
-    {
-        LLRemove(temp_array->ll, i);
-        i--;
-    }
-    Element element = LLRemove(temp_array->ll, index);
-    free(temp_array);
-    return element;
+    return temp_val;
 }
 void Arrayput(Array array, Element element, int index)
 {
     if (index > ArraySize(array))
     {
-        ArrayResize(array, index + 1);
+        ArrayResize(array, index);
         LLAdd(array->ll, index, element);
     }
     else
