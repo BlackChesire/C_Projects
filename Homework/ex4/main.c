@@ -5,9 +5,6 @@
 #include "LinkedList.h"
 #include "Array.h"
 #include "Set.h"
-//argv[1] - path
-//argv[2] - set
-//argv[3] - array by apperance
 int is_legal_date(const char *str)
 { //checks if the pattern is day/month/year
     regex_t reg;
@@ -53,18 +50,27 @@ int main(int argc, char *argv[])
     while (getline(&buffer, &buffer_size, file) != EOF)
     {
         char *line = buffer;
+        if (is_legal_date(line))
+        {
+            Arrayput(array_date, line, line_counter);
+            SetAdd(set_date, line);
+        }
+        line_counter++;
     }
-    if (is_legal_date(line))
+    //argv[1] - path
+    //argv[2] - set
+    //argv[3] - array by apperance
+    int i;
+    for (i = 0; i < ArraySize(array_date); i++)
     {
-        Arrayput(array_date, line, line_counter);
-        SetAdd(set_date, line);
+        char *date = ArrayGet(array_date, i);
+        fprintf(file_array_out, "%s", date);
     }
-    line_counter++;
-    /** TODO
-     * writing the outpt to the files.
-     */
+
     fclose(file);
     fclose(file_set_out);
     fclose(file_array_out);
+    ArrayDestroy(array_date);
+    SetDestroy(set_date);
     return 0;
 }
