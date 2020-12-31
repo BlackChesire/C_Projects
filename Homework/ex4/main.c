@@ -8,7 +8,7 @@
 #include "Set.h"
 
 int is_legal_date(const char *str)
-{ //checks if the pattern is day/month/year
+{ //checks if the regex is  day/month/year pattern
     regex_t reg;
     int val = regcomp(&reg, "^[0-9]\\{1,2\\}/[0-9]\\{1,2\\}/[0-9]\\{1,4\\}$", REG_NEWLINE); // REG_NEWLINE is a flag to avoid \n
     val = regexec(&reg, str, 0, NULL, 0);
@@ -46,9 +46,15 @@ int main(int argc, char *argv[])
     }
     Array array_date = ArrayCreate(0, strCopy, free);
     Set set_date = SetCreate(strCopy, free, strCompare);
-    FILE *file = fopen(argv[1], "r");
-    FILE *file_set_out = fopen(argv[2], "w");
-    FILE *file_array_out = fopen(argv[3], "w");
+    FILE *file = fopen(argv[1], "r");        	 //argv[1] - path
+    if(!file)
+	fprintf(stderr, "Error file: %s not found !", argv[0]);
+    FILE *file_set_out = fopen(argv[2], "w");     //argv[2] - set
+    if(!file_set_out)
+	fprintf(stderr, "Error file: %s not found !", argv[1]); 
+    FILE *file_array_out = fopen(argv[3], "w");  //argv[3] - array by apperance
+    if(!file_array_out)
+	fprintf(stderr, "Error file: %s not found !", argv[2]);
     char *buffer = NULL;
     size_t buffer_size = 0;
     char *line;
@@ -65,19 +71,14 @@ int main(int argc, char *argv[])
         }
 	line_counter++;
     }
-    //argv[1] - path
-    //argv[2] - set
-    //argv[3] - array by apperance
     int i=0; //index
     for (i = 0; i < ArraySize(array_date); i++)
     {
         char* date = ArrayGet(array_date, i);  
 	    fprintf(file_array_out, "%s", date);
     }
-    // for (Element = setfirst; E != NULL;E = setnext) // iterate
-
     Element e;
-    for (e = SetFirst(set_date); e != NULL; e = SetNext(set_date))
+    for (e = SetFirst(set_date); e != NULL; e = SetNext(set_date)) //iterates over the set
     {
         char *s_date = e;
         fprintf(file_set_out, "%s", s_date);
