@@ -11,9 +11,10 @@ struct Array
 
 Array ArrayCreate(int arraysize, Element (*cpy)(Element), void (*fre)(Element))
 {
-    if (arraysize > MAX_ARRAY_SIZE)
+    if (arraysize > MAX_ARRAY_SIZE) {
         fprintf(stderr, "the size you requesting for the array is too big ! file %s, line:%d\n", __FILE__, __LINE__);
         exit(-3);
+    }
     Array array = (Array)malloc(sizeof(struct Array)); // freed by ArrayDestroy
     if (!array)
     {
@@ -75,8 +76,8 @@ Element ArrayGet(Array array, int index)
         fprintf(stderr, "Error, over range exception, %d is too big ,File : %s, Line: %d\n", index, __FILE__, __LINE__);
 	    return NULL;
     }
-    Element temp_val = LLRemove(array->ll, index);
-    Arrayput(array, temp_val, index);
+    Element temp_val = LLRemove(array->ll, index); //remove the element and placement the removed element to this variable
+    Arrayput(array, temp_val, index); //add the removed element back to it place in the array 
     return temp_val;
 }
 void Arrayput(Array array, Element element, int index)
