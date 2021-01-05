@@ -46,20 +46,28 @@ int main(int argc, char *argv[])
     }
     Array array_date = ArrayCreate(0, strCopy, free);
     Set set_date = SetCreate(strCopy, free, strCompare);
+    
     FILE *file = fopen(argv[1], "r");        	 //argv[1] - path
-    if(!file)
-	fprintf(stderr, "Error file: %s not found !", argv[0]);
+    if(!file) {
+	    fprintf(stderr, "Error file: %s not found !", argv[0]);
+        return -1;
+    }
     FILE *file_set_out = fopen(argv[2], "w");     //argv[2] - set
-    if(!file_set_out)
-	fprintf(stderr, "Error file: %s not found !", argv[1]); 
+    if(!file_set_out) {
+	    fprintf(stderr, "Error file: %s not found !", argv[1]); 
+        return -1;
+    }
     FILE *file_array_out = fopen(argv[3], "w");  //argv[3] - array by apperance
-    if(!file_array_out)
-	fprintf(stderr, "Error file: %s not found !", argv[2]);
+    if(!file_array_out) {
+	    fprintf(stderr, "Error file: %s not found !", argv[2]);
+        return -1;
+    }
     char *buffer = NULL;
     size_t buffer_size = 0;
     char *line;
     int line_counter = 0;
     int j=0; //index
+    
     while (getline(&buffer, &buffer_size, file) != EOF)
     {
         char *line = buffer;
@@ -71,18 +79,21 @@ int main(int argc, char *argv[])
         }
 	line_counter++;
     }
+
     int i=0; //index
     for (i = 0; i < ArraySize(array_date); i++)
     {
         char* date = ArrayGet(array_date, i);  
 	    fprintf(file_array_out, "%s", date);
     }
+
     Element e;
     for (e = SetFirst(set_date); e != NULL; e = SetNext(set_date)) //iterates over the set
     {
         char *s_date = e;
         fprintf(file_set_out, "%s", s_date);
     }
+
     fclose(file);
     fclose(file_set_out);
     fclose(file_array_out);
