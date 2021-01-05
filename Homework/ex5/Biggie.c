@@ -4,8 +4,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct Biggie {
-    char* number;
+struct Biggie
+{
+    char *number;
     unsigned int size;
 };
 
@@ -13,90 +14,98 @@ struct Biggie {
 // You can (bbut don't have to) use the following internal functions
 
 // Allocate memory, fill with 0's (like calloc), make sure everything is ok
-void* AllocateMemory(unsigned int size, const char* file, int line_num);
+void *AllocateMemory(unsigned int size, const char *file, int line_num);
 // Realloc, make sure all is well
-void* ReallocateMemory(void* mem, unsigned int size, const char* file, int line_num);
+void *ReallocateMemory(void *mem, unsigned int size, const char *file, int line_num);
 // Return the larger of two numbers
 unsigned int max(unsigned int x, unsigned int y);
 
 /******************************************************************************************************/
-void* AllocateMemory(unsigned int size, const char* file, int line_num)
+void *AllocateMemory(unsigned int size, const char *file, int line_num)
 {
-    void*   ptr = calloc(size, sizeof(unsigned char));
-    
+    void *ptr = calloc(size, sizeof(unsigned char));
+
     // If we failed the user will know exactly where the error happened
-    if(ptr == NULL) {
+    if (ptr == NULL)
+    {
         fprintf(stderr, "Fatal error in %s (%d): failed to allocate memory of size %u\n\n", file, line_num, size);
         exit(-1);
     }
-    
+
     return ptr;
 }
 
 /******************************************************************************************************/
-void* ReallocateMemory(void* mem, unsigned int size, const char* file, int line_num)
+void *ReallocateMemory(void *mem, unsigned int size, const char *file, int line_num)
 {
-    void*   ptr = realloc(mem, size);
-    
+    void *ptr = realloc(mem, size);
+
     // If we failed the user will know exactly where the error happened
-    if(ptr == NULL) {
+    if (ptr == NULL)
+    {
         fprintf(stderr, "Fatal error in %s (%d): failed to allocate memory of size %u\n\n", file, line_num, size);
         exit(-1);
     }
-    
+
     return ptr;
 }
 
 /******************************************************************************************************/
 unsigned int max(unsigned int x, unsigned int y)
 {
-    return (x > y)? x : y;
+    return (x > y) ? x : y;
 }
 
 // Creates a Biggie initialized to 0
-Biggie    BiggieCreate(int size) {
-    if(size < 0) {
-        fprintf(stderr, "Error, size must be positive number, file: %s , line: %d", __FILE__, __LINE__)
+Biggie BiggieCreate(int size)
+{
+    if (size < 0)
+    {
+        fprintf(stderr, "Error, size must be positive number, file: %s , line: %d", __FILE__, __LINE__);
     }
-    Biggie biggie = AllocateMemory(sizeof(struct Biggie), __FILE__ , __LINE__);
-    biggie -> size = size;
-    biggie -> number = (char*)AllocateMemory(size, __FILE__ , __LINE__);
+    Biggie biggie = AllocateMemory(sizeof(struct Biggie), __FILE__, __LINE__);
+    biggie->size = size;
+    biggie->number = (char *)AllocateMemory(size, __FILE__, __LINE__);
     return biggie;
 }
 
 // Creates a Biggie from a string (e.g. "12345678999")
-Biggie    BiggieCreateFromString(const char* num);
-
-
-
-
+Biggie BiggieCreateFromString(const char *num)
+{
+    Biggie bn = BiggieCreate(atoi(num));
+    return bn;
+}
 // Creates a new copy of bn
-Biggie    BiggieCreateFromBiggie(const Biggie bn) {
+Biggie BiggieCreateFromBiggie(const Biggie bn)
+{
     Biggie new_biggie = BiggieCreate(bn->size);
     BiggieCopy(new_biggie, bn);
     return new_biggie;
 }
 
 // Creates a Biggie from an integer
-Biggie    BiggieCreateFromUInt(unsigned int n);
+Biggie BiggieCreateFromUInt(unsigned int n);
 
 // Assign the value of bn2 to bn1. Change bn1's size if required
-void    BiggieCopy(Biggie bn1, const Biggie bn2) {
-    if(bn1->size == bn2->size) {
+void BiggieCopy(Biggie bn1, const Biggie bn2)
+{
+    if (bn1->size == bn2->size)
+    {
         bn1->number = bn2->number; ///???
     }
-    else if((bn1->size) < (bn2->size)) {
-        bn1 = BiggieResize(bn1 ,bn2->size);
+    else if ((bn1->size) < (bn2->size))
+    {
+        bn1 = BiggieResize(bn1, bn2->size);
         bn1->number = bn2->number; ///???
     }
-    else if((bn1->size) < (bn2->size)) { //?????
-
+    else if ((bn1->size) < (bn2->size))
+    { //?????
     }
-
 }
 
 // Destructor for Biggies
-void    BiggieDestroy(Biggie bn) {
+void BiggieDestroy(Biggie bn)
+{
     free(bn->number);
     free(bn->size);
     free(bn);
@@ -107,8 +116,14 @@ void    BiggieDestroy(Biggie bn) {
 unsigned int BiggieNumBits(Biggie bn);
 
 // Change Biggie's size - only if it does not hurt
-Biggie BiggieResize(Biggie bn, int new_size) {
-    ReallocateMemory(void* mem, unsigned int size, const char* file, int line_num)
+Biggie BiggieResize(Biggie bn, int new_size)
+{
+    if (new_size < 0)
+    {
+        fprintf(stderr, "Error, size must be positive number, file: %s , line: %d", __FILE__, __LINE__);
+    }
+    bn = ReallocateMemory(bn, new_size, __FILE__, __LINE__);
+    return bn;
 }
 
 // Left-shift by any number (<< 1)
@@ -140,18 +155,18 @@ unsigned int BiggieConvert(const Biggie bn);
 
 // Compaerators:
 // Greater than (>)
-bool    BiggieGT(const Biggie bn1, const Biggie bn2);
+bool BiggieGT(const Biggie bn1, const Biggie bn2);
 
 // Less than (<)
-bool    BiggieLT(const Biggie bn1, const Biggie bn2);
+bool BiggieLT(const Biggie bn1, const Biggie bn2);
 
 // Equals (==)
-bool    BiggieEQ(const Biggie bn1, const Biggie bn2);
+bool BiggieEQ(const Biggie bn1, const Biggie bn2);
 
 // Add bn1 and bn2, return the result
-Biggie    BiggieAdd(Biggie bn1, const Biggie bn2);
+Biggie BiggieAdd(Biggie bn1, const Biggie bn2);
 
 // Multiply bn1 by bn2, return the result's address
-Biggie    BiggieMultiply(Biggie bn1, const Biggie bn2);
+Biggie BiggieMultiply(Biggie bn1, const Biggie bn2);
 
 #endif
