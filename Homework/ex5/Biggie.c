@@ -1,30 +1,48 @@
+#include "Biggie.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
+/******************************************************************************************************/
+// You can (bbut don't have to) use the following internal functions
 
+// Allocate memory, fill with 0's (like calloc), make sure everything is ok
+void* AllocateMemory(unsigned int size, const char* file, int line_num);
+// Realloc, make sure all is well
+void* ReallocateMemory(void* mem, unsigned int size, const char* file, int line_num);
+// Return the larger of two numbers
+unsigned int max(unsigned int x, unsigned int y);
 
+/******************************************************************************************************/
+void* AllocateMemory(unsigned int size, const char* file, int line_num)
+{
+    void*   ptr = calloc(size, sizeof(unsigned char));
+    
+    // If we failed the user will know exactly where the error happened
+    if(ptr == NULL) {
+        fprintf(stderr, "Fatal error in %s (%d): failed to allocate memory of size %u\n\n", file, line_num, size);
+        exit(-1);
+    }
+    
+    return ptr;
+}
 
+/******************************************************************************************************/
+void* ReallocateMemory(void* mem, unsigned int size, const char* file, int line_num)
+{
+    void*   ptr = realloc(mem, size);
+    
+    // If we failed the user will know exactly where the error happened
+    if(ptr == NULL) {
+        fprintf(stderr, "Fatal error in %s (%d): failed to allocate memory of size %u\n\n", file, line_num, size);
+        exit(-1);
+    }
+    
+    return ptr;
+}
 
-
-
-
-
-        
-
-
-<html>
-    <head>
-        <META HTTP-EQUIV="expires" CONTENT="0">
-    </head>
-    <body>
-
-        <form method="POST" enctype="application/x-www-form-urlencoded" action="/nidp/idff/sso?id=TelHai&sid=0&option=credential&sid=0&target=https%3A%2F%2Fmoodle.telhai.ac.il%2Flogin%2Findex.php"></form>
-
-        <script language="JavaScript">
-            <!--
-                document.forms[0].submit();
-            -->
-        </script>
-    </body>
-</html>
-
-
- 
+/******************************************************************************************************/
+unsigned int max(unsigned int x, unsigned int y)
+{
+    return (x > y)? x : y;
+}
