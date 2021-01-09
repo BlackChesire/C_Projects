@@ -66,13 +66,14 @@ Biggie BiggieCreate(int size)
     Biggie biggie = AllocateMemory(sizeof(struct Biggie), __FILE__, __LINE__);
     biggie->size = size;
     biggie->number = (char *)AllocateMemory(size, __FILE__, __LINE__);
+    biggie->number = 0;
     return biggie;
 }
 
 // Creates a Biggie from a string (e.g. "12345678999")
 Biggie BiggieCreateFromString(const char *num)
 {
-    Biggie bn = BiggieCreate(atoi(num));
+    Biggie bn = BiggieCreate(atoi(num)); //should be working ! need to check
     return bn;
 }
 // Creates a new copy of bn
