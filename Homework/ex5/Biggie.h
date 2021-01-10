@@ -3,44 +3,44 @@
 
 #include <stdbool.h>
 
-typedef struct Biggie* Biggie;
+typedef struct Biggie *Biggie;
 
 // Creates a Biggie initialized to 0
-Biggie    BiggieCreate(int size);
+Biggie BiggieCreate(int size);
 
 // Creates a Biggie from a string (e.g. "12345678999")
-Biggie    BiggieCreateFromString(const char* num);
+Biggie BiggieCreateFromString(const char *num);
 
 // Creates a new copy of bn
-Biggie    BiggieCreateFromBiggie(const Biggie bn);
+Biggie BiggieCreateFromBiggie(const Biggie bn);
 
 // Creates a Biggie from an integer
-Biggie    BiggieCreateFromUInt(unsigned int n);
+Biggie BiggieCreateFromUInt(unsigned int n);
 
 // Assign the value of bn2 to bn1. Change bn1's size if required
-void    BiggieCopy(Biggie bn1, const Biggie bn2);
+void BiggieCopy(Biggie bn1, const Biggie bn2);
 
 // Destructor for Biggies
-void    BiggieDestroy(Biggie bn);
+void BiggieDestroy(Biggie bn);
 
 // Return the number of bits in a Biggie
 // Example: 000000001011 => numbits == 4
-unsigned int BiggieNumBits(Biggie bn);
+unsigned int BiggieNumBits(const Biggie bn);
 
-// Change Biggie's size - only if it does not hurt
-Biggie BiggieResize(Biggie bn, int new_size);
+// Change Biggie's size
+void BiggieResize(Biggie bn, unsigned int new_size);
 
 // Left-shift by any number (<< 1)
-Biggie BiggieLeftShift1(Biggie bn);
+Biggie BiggieLeftShift1(const Biggie bn);
 
 // Left-shift by any number (<< n)
-Biggie BiggieLeftShift(Biggie bn, int n);
+Biggie BiggieLeftShift(const Biggie bn, int n);
 
 // Right-shift by one bit
-Biggie BiggieRightShift1(Biggie bn);
+Biggie BiggieRightShift1(const Biggie bn);
 
 // Right-shift by any number
-Biggie BiggieRightShift(Biggie bn, int n);
+Biggie BiggieRightShift(const Biggie bn, int n);
 
 // Bitwise xor. Will change bn1's size if it is smaller than bn2's
 Biggie BiggieXor(const Biggie bn1, const Biggie bn2);
@@ -59,18 +59,18 @@ unsigned int BiggieConvert(const Biggie bn);
 
 // Compaerators:
 // Greater than (>)
-bool    BiggieGT(const Biggie bn1, const Biggie bn2);
+bool BiggieGT(const Biggie bn1, const Biggie bn2);
 
 // Less than (<)
-bool    BiggieLT(const Biggie bn1, const Biggie bn2);
+bool BiggieLT(const Biggie bn1, const Biggie bn2);
 
 // Equals (==)
-bool    BiggieEQ(const Biggie bn1, const Biggie bn2);
+bool BiggieEQ(const Biggie bn1, const Biggie bn2);
 
 // Add bn1 and bn2, return the result
-Biggie    BiggieAdd(Biggie bn1, const Biggie bn2);
+Biggie BiggieAdd(const Biggie bn1, const Biggie bn2);
 
 // Multiply bn1 by bn2, return the result's address
-Biggie    BiggieMultiply(Biggie bn1, const Biggie bn2);
+Biggie BiggieMultiply(const Biggie bn1, const Biggie bn2);
 
 #endif
