@@ -18,13 +18,13 @@ int main()
     time_t seed = time(NULL);
     srand((unsigned int)seed);
 
-    //unsigned int x1 = rand();
-    //unsigned int x2 = rand();
-    //  unsigned int x = 0;
+    unsigned int x1 = rand();
+    unsigned int x2 = rand();
+    unsigned int x = 0;
     //     //Biggie bn1 = BiggieCreateFromUInt(x1);
     //     //Biggie bn2 = BiggieCreateFromUInt(x2);
-    // Biggie bn1 = BiggieCreate(4);
-    // Biggie bn2 = BiggieCreate(4);
+    Biggie bn1 = BiggieCreate(4);
+    Biggie bn2 = BiggieCreate(4);
     Biggie bn = NULL;
 
     // BiggieCreate(int size), BiggieConvert
@@ -34,21 +34,21 @@ int main()
     BiggieDestroy(bn);
 
     //     // BiggieCreateFromUInt
-    //     printf("BiggieCreateFromUInt/1\t%s\t(Biggie=%u, Expected=%u)\n", ((x1 == BiggieConvert(bn1)) ? "ok" : "fail"), BiggieConvert(bn1), x1);
-    //     printf("BiggieCreateFromUInt/2\t%s\t(Biggie=%u, Expected=%u)\n", ((x2 == BiggieConvert(bn2)) ? "ok" : "fail"), BiggieConvert(bn2), x2);
+    // printf("BiggieCreateFromUInt/1\t%s\t(Biggie=%u, Expected=%u)\n", ((x1 == BiggieConvert(bn1)) ? "ok" : "fail"), BiggieConvert(bn1), x1);
+    // printf("BiggieCreateFromUInt/2\t%s\t(Biggie=%u, Expected=%u)\n", ((x2 == BiggieConvert(bn2)) ? "ok" : "fail"), BiggieConvert(bn2), x2);
 
-    //     // BiggieCreateFromBiggie
-    //     bn = BiggieCreateFromBiggie(bn1);
-    //     printf("BiggieCreateFromBiggie\t%s\t(Biggie=%u, Expected=%u)\n", ((BiggieConvert(bn) == BiggieConvert(bn1)) ? "ok" : "fail"), BiggieConvert(bn), BiggieConvert(bn1));
-    //     BiggieDestroy(bn);
+    // BiggieCreateFromBiggie
+    bn = BiggieCreateFromBiggie(bn1);
+    printf("BiggieCreateFromBiggie\t%s\t(Biggie=%u, Expected=%u)\n", ((BiggieConvert(bn) == BiggieConvert(bn1)) ? "ok" : "fail"), BiggieConvert(bn), BiggieConvert(bn1));
+    BiggieDestroy(bn);
 
-    //     // BiggieResize
-    //     x = rand();
-    //     bn = BiggieCreate(4);
-    //     //bn = BiggieCreateFromUInt(x);
-    //     BiggieResize(bn, 1);
-    //     printf("BiggieResize        \t%s\t(Biggie=%u, expected=%u)\n", ((BiggieConvert(bn) == (unsigned char)x) ? "ok" : "fail"), BiggieConvert(bn), (unsigned char)x);
-    //     BiggieDestroy(bn);
+    // BiggieResize
+    x = rand();
+    bn = BiggieCreate(4);
+    //bn = BiggieCreateFromUInt(x);
+    BiggieResize(bn, 1);
+    printf("BiggieResize        \t%s\t(Biggie=%u, expected=%u)\n", ((BiggieConvert(bn) == (unsigned char)x) ? "ok" : "fail"), BiggieConvert(bn), (unsigned char)x);
+    BiggieDestroy(bn);
 
     //     // BiggieLeftShift
     //     // bn = BiggieLeftShift(bn2, 5);
@@ -79,11 +79,11 @@ int main()
     //     // printf("BiggieOr            \t%s\t(Biggie=%u, Expected=%u)\n", ((x==BiggieConvert(bn))? "ok" : "fail"), BiggieConvert(bn), x);
     //     // BiggieDestroy(bn);
 
-    //     // BiggieNot
-    //     x = ~BiggieConvert(bn1);
-    //     bn = BiggieNot(bn1);
-    //     printf("BiggieNot           \t%s\t(Biggie=%u, Expected=%u)\n", ((x == BiggieConvert(bn)) ? "ok" : "fail"), BiggieConvert(bn), x);
-    //     BiggieDestroy(bn);
+    // BiggieNot
+    x = ~BiggieConvert(bn1);
+    bn = BiggieNot(bn1);
+    printf("BiggieNot           \t%s\t(Biggie=%u, Expected=%u)\n", ((x == BiggieConvert(bn)) ? "ok" : "fail"), BiggieConvert(bn), x);
+    BiggieDestroy(bn);
 
     //     // BiggieCopy
     //     bn = BiggieCreate(3);
@@ -126,12 +126,12 @@ int main()
     //     // BiggieDestroy(bn1);
     //     // BiggieDestroy(bn2);
 
-    //     // BiggieCreateFromString
-    //     char str[128];
-    //     sprintf(str, "%u", rand());
-    //     bn = BiggieCreateFromString(str);
-    //     printf("BiggieCreateFromString\t%s\t(Biggie=%u, Expected=%s)\n", ((BiggieConvert(bn) == atoi(str)) ? "ok" : "fail"), BiggieConvert(bn), str);
-    //     BiggieDestroy(bn);
+    // BiggieCreateFromString
+    // char str[128];
+    // sprintf(str, "%u", rand());
+    // bn = BiggieCreateFromString(str);
+    // printf("BiggieCreateFromString\t%s\t(Biggie=%u, Expected=%s)\n", ((BiggieConvert(bn) == atoi(str)) ? "ok" : "fail"), BiggieConvert(bn), str);
+    // BiggieDestroy(bn);
 
     return 0;
 }
