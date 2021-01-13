@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h> //????
 
 struct Biggie
 {
@@ -64,10 +63,9 @@ Biggie BiggieCreate(int size)
     {
         fprintf(stderr, "Error, size must be positive number, file: %s , line: %d", __FILE__, __LINE__);
     }
-    Biggie biggie = AllocateMemory(sizeof(struct Biggie), __FILE__, __LINE__);
+    Biggie biggie = (Biggie)AllocateMemory(sizeof(struct Biggie), __FILE__, __LINE__);
+    biggie->number = (unsigned char *)AllocateMemory(size, __FILE__, __LINE__);
     biggie->size = size;
-    biggie->number = (char *)AllocateMemory(size, __FILE__, __LINE__);
-    biggie->number = 0;
     return biggie;
 }
 
@@ -86,7 +84,10 @@ Biggie BiggieCreateFromBiggie(const Biggie bn)
 }
 
 // Creates a Biggie from an integer
-//Biggie BiggieCreateFromUInt(unsigned int n);
+Biggie BiggieCreateFromUInt(unsigned int n)
+{
+    Biggie biggie = BiggieCreate(4);
+}
 
 // Assign the value of bn2 to bn1. Change bn1's size if required
 void BiggieCopy(Biggie bn1, const Biggie bn2)
@@ -180,16 +181,7 @@ Biggie BiggieNot(const Biggie bn)
 // Convert a Biggie to an unsigned int. Ignore bytes that are larger than sizeof(int).
 unsigned int BiggieConvert(const Biggie bn)
 {
-    unsigned int sum = 0;
-    int j = 0;
-    for (j = 0; j < (bn->size * 8); j++)
-    {
-        if (j < (8 * sizeof(int)))
-        {
-            sum += (bn->number[j] * pow(2, j));
-        }
-    }
-    return sum;
+    unsigned int number = 0;
 }
 
 // Compaerators:
