@@ -125,11 +125,9 @@ unsigned int BiggieNumBits(const Biggie bn)
     int counter = 0;
     bool is_one = false;
     unsigned int returnN = 0;
-    int i;
-    for (i = (bn->size - 1); i > 0; i--)
+    for (int i = (bn->size - 1); i > 0; i--)
     {
-        int j;
-        for (j = 7; j >= 0; j--)
+        for (int j = 7; j >= 0; j--)
         {
             if (((bn->number[i] << (7 - j)) >> 7) == 1)
             {
