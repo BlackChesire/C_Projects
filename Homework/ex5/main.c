@@ -47,28 +47,28 @@ int main()
     printf("BiggieResize        \t%s\t(Biggie=%u, expected=%u)\n", ((BiggieConvert(bn) == (unsigned char)x) ? "ok" : "fail"), BiggieConvert(bn), (unsigned char)x);
     BiggieDestroy(bn);
 
-    // // BiggieLeftShift
-    // bn = BiggieLeftShift(bn2, 5);
-    // printf("BiggieLeftShift     \t%s\t(Biggie=%u, Expected=%u)\n", (((x2 << 5)==BiggieConvert(bn))? "ok" : "fail"), BiggieConvert(bn), x2 << 5);
-    // BiggieDestroy(bn);
+    // BiggieLeftShift
+    bn = BiggieLeftShift(bn2, 5);
+    printf("BiggieLeftShift     \t%s\t(Biggie=%u, Expected=%u)\n", (((x2 << 5) == BiggieConvert(bn)) ? "ok" : "fail"), BiggieConvert(bn), x2 << 5);
+    BiggieDestroy(bn);
 
-    // // BiggieRightShift
-    // bn = BiggieRightShift(bn1, 7);
-    // x = BiggieConvert(bn1);
-    // printf("BiggieRightShift    \t%s\t(Biggie=%u, Expected=%u)\n", (((x1 >> 7)==BiggieConvert(bn))? "ok" : "fail"), BiggieConvert(bn), x1 >> 7);
-    // BiggieDestroy(bn);
+    // BiggieRightShift
+    bn = BiggieRightShift(bn1, 7);
+    x = BiggieConvert(bn1);
+    printf("BiggieRightShift    \t%s\t(Biggie=%u, Expected=%u)\n", (((x1 >> 7) == BiggieConvert(bn)) ? "ok" : "fail"), BiggieConvert(bn), x1 >> 7);
+    BiggieDestroy(bn);
 
     // // BiggieXor
-    // x = BiggieConvert(bn1) ^ BiggieConvert(bn2);
-    // bn = BiggieXor(bn1, bn2);
-    // printf("BiggieXor           \t%s\t(Biggie=%u, Expected=%u)\n", ((x==BiggieConvert(bn))? "ok" : "fail"), BiggieConvert(bn), x);
-    // BiggieDestroy(bn);
+    x = BiggieConvert(bn1) ^ BiggieConvert(bn2);
+    bn = BiggieXor(bn1, bn2);
+    printf("BiggieXor           \t%s\t(Biggie=%u, Expected=%u)\n", ((x == BiggieConvert(bn)) ? "ok" : "fail"), BiggieConvert(bn), x);
+    BiggieDestroy(bn);
 
-    // // BiggieAnd
-    // x = BiggieConvert(bn1) & BiggieConvert(bn2);
-    // bn = BiggieAnd(bn1, bn2);
-    // printf("BiggieAnd           \t%s\t(Biggie=%u, Expected=%u)\n", ((x==BiggieConvert(bn))? "ok" : "fail"), BiggieConvert(bn), x);
-    // BiggieDestroy(bn);
+    // BiggieAnd
+    x = BiggieConvert(bn1) & BiggieConvert(bn2);
+    bn = BiggieAnd(bn1, bn2);
+    printf("BiggieAnd           \t%s\t(Biggie=%u, Expected=%u)\n", ((x == BiggieConvert(bn)) ? "ok" : "fail"), BiggieConvert(bn), x);
+    BiggieDestroy(bn);
 
     // BiggieOr
     x = BiggieConvert(bn1) | BiggieConvert(bn2);
@@ -102,8 +102,8 @@ int main()
     // // BiggieEQ
     printf("BiggieEQ            \t%s\t(Biggie=%s, Expected=%s)\n", ((BiggieEQ(bn1, bn2) == (x1 == x2)) ? "ok" : "fail"), (BiggieEQ(bn1, bn2) ? "True" : "False"), ((x1 == x2) ? "True" : "False"));
 
-    // BiggieDestroy(bn1);
-    // BiggieDestroy(bn2);
+    BiggieDestroy(bn1);
+    BiggieDestroy(bn2);
 
     // x1=rand()%10000;
     // x2=rand()%10000;

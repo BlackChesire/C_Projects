@@ -182,16 +182,71 @@ Biggie BiggieLeftShift(const Biggie bn, int n)
 }
 
 // // Right-shift by one bit
-// Biggie BiggieRightShift1(const Biggie bn);
+Biggie BiggieRightShift1(const Biggie bn)
+{
+    Biggie new_bn = BiggieCreateFromBiggie(bn);
+    unsigned char carry = 0;
+    int i;
 
-// // Right-shift by any number
-// Biggie BiggieRightShift(const Biggie bn, int n);
+    for (i = new_bn->size; i >= 0; i--)
+    {
+        unsigned char new_carry = (new_bn->number[i] && 1);
+        new_bn->number[i] >>= 1;
+        new_bn->number[i] |= (carry << 4);
+        carry = new_carry;
+    }
+
+    return new_bn;
+}
+
+// Right-shift by any number
+Biggie BiggieRightShift(const Biggie bn, int n)
+{
+    Biggie new_bn = BiggieCreateFromBiggie(bn);
+    unsigned char carry = 0;
+    int i;
+    for (i = 0; i < new_bn->size; i++)
+    {
+        unsigned char new_carry = (new_bn->number[i] << 7);
+        new_bn->number[i] >>= 1;
+        new_bn->number[i] |= carry;
+        carry = new_carry;
+    }
+    return new_bn;
+    ;
+}
 
 // // Bitwise xor. Will change bn1's size if it is smaller than bn2's
-// Biggie BiggieXor(const Biggie bn1, const Biggie bn2);
+Biggie BiggieXor(const Biggie bn1, const Biggie bn2)
+{
+    Biggie new_bn = BiggieCreateFromBiggie(bn1);
+    if (new_bn->size < bn2->size)
+    {
+        BiggieResize(new_bn, bn2->size);
+    }
+    int i = 0;
+    for (i = 0; i < new_bn->size; i++)
+    {
+        new_bn->number[i] ^= bn2->number[i];
+    }
+    return new_bn;
+}
 
 // // Bitwise and. Will change bn1's size if it is smaller than bn2's
-// Biggie BiggieAnd(const Biggie bn1, const Biggie bn2);
+Biggie BiggieAnd(const Biggie bn1, const Biggie bn2)
+{
+    Biggie new_bn = BiggieCreateFromBiggie(bn1);
+    if (new_bn->size < bn2->size)
+    {
+        BiggieResize(new_bn, bn2->size);
+    }
+    int i = 0;
+    for (i = 0; i < new_bn->size; i++)
+    {
+        new_bn->number[i] &= bn2->number[i];
+    }
+    return new_bn;
+}
 
 // Bitwise or. Will change bn1's size if it is smaller than bn2's
 Biggie BiggieOr(const Biggie bn1, const Biggie bn2)
@@ -256,7 +311,6 @@ bool BiggieGT(const Biggie bn1, const Biggie bn2)
     {
         return false;
     }
-
     int j;
     for (j = bn1->size - 1; j >= 0; j--)
     {
@@ -308,4 +362,4 @@ bool BiggieEQ(const Biggie bn1, const Biggie bn2)
 //Biggie BiggieAdd(const Biggie bn1, const Biggie bn2)
 
 // Multiply bn1 by bn2, return the result's address
-//Biggie BiggieMultiply(const Biggie bn1, const Biggie bn2);
+//Biggie BiggieMultiply(const Biggie bn1, const Biggie bn2)
