@@ -122,6 +122,7 @@ void BiggieDestroy(Biggie bn)
 // Example: 000000001011 => numbits == 4
 unsigned int BiggieNumBits(const Biggie bn)
 {
+    int counter = 0;
     bool is_one = false;
     unsigned int returnN = 0;
     for (int i = (bn->size - 1); i > 0; i--)
@@ -131,11 +132,13 @@ unsigned int BiggieNumBits(const Biggie bn)
             if (((bn->number[i] << (7 - j)) >> 7) == 1)
             {
                 is_one = true;
+                if (j == 0 && (!is_one))
+                    counter += 8;
             }
             if (is_one == true)
             {
                 returnN = ((bn->size) * 8) - (7 - j);
-                return returnN;
+                return returnN - counter;
             }
         }
     }
@@ -253,21 +256,20 @@ bool BiggieGT(const Biggie bn1, const Biggie bn2)
     {
         return false;
     }
-    else if (BiggieNumBits(bn1) == BiggieNumBits(bn2))
+
+    int j;
+    for (j = bn1->size - 1; j >= 0; j--)
     {
-        int j;
-        for (j = bn1->size - 1; j >= 0; j--)
+        if (bn1->number[j] > bn2->number[j])
         {
-            if (bn1->number[j] > bn2->number[j])
-            {
-                return true;
-            }
-            else if (bn1->number[j] < bn2->number[j])
-            {
-                return false;
-            }
+            return true;
+        }
+        else if (bn1->number[j] < bn2->number[j])
+        {
+            return false;
         }
     }
+
     return false;
 }
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-for i in {1..5000}
+for i in {1..500}
 do
- './prog';
+ ./prog | grep "fail";
 
 done
