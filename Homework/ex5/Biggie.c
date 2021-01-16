@@ -132,7 +132,7 @@ unsigned int BiggieNumBits(const Biggie bn)
             if (((bn->number[i] << (7 - j)) >> 7) == 1)
             {
                 is_one = true;
-                if (j == 0 && (!is_one))
+                if ((j == 0) && (!is_one))
                     counter += 8;
             }
             if (is_one == true)
@@ -353,10 +353,85 @@ bool BiggieEQ(const Biggie bn1, const Biggie bn2)
     return true;
 }
 
-//Add bn1 and bn2, return the result
-Biggie BiggieAdd(const Biggie bn1, const Biggie bn2)
+// Add bn1 and bn2, return the result
+Biggie BiggieAdd(Biggie bn1, const Biggie bn2)
 {
+    Biggie new_bn1;
+    Biggie new_bn2;
+
+    if (BiggieGT(bn1, bn2))
+    {
+        new_bn1 = BiggieCreateFromBiggie(bn1);
+        new_bn2 = BiggieCreateFromBiggie(bn2);
+    }
+    else if (BiggieLT(bn1, bn2))
+    {
+        new_bn1 = BiggieCreateFromBiggie(bn2);
+        new_bn2 = BiggieCreateFromBiggie(bn1);
+    }
+    else
+    {
+        new_bn1 = BiggieCreateFromBiggie(bn1);
+        new_bn2 = BiggieCreateFromBiggie(bn2);
+    }
+    BiggieResize(new_bn1, new_bn1->size + 1);
+    BiggieResize(new_bn2, new_bn2->size + 1);
+
+    int carry = 0;
+    for (int i = 0; i < new_bn2->size - 1; i++)
+    {
+        new_bn1->number[i] = new_bn1->number[i] + carry;
+        if ((new_bn1->number[i] == 0) && (carry == 1))
+        {
+            carry = 1;
+        }
+        else
+        {
+            carry = 0;
+        }
+        if (new_bn1->number[i] + new_bn2->number[i] > 255)
+        {
+            carry = 1;
+        }
+        new_bn1->number[i] = new_bn1->number[i] + new_bn2->number[i];
+    }
+    BiggieDestroy(new_bn2);
+    return new_bn1;
 }
 
 // Multiply bn1 by bn2, return the result's address
-//Biggie BiggieMultiply(const Biggie bn1, const Biggie bn2)
+Biggie BiggieMultiply(Biggie bn1, const Biggie bn2)
+{
+    /**
+     * creating all the requiered biggies
+     */
+    Biggie temp_biggie1;
+    Biggie temp_biggie2;
+    Biggie temp_result_mult;
+    Biggie result_mult = BiggieCreate(bn1->size);
+    temp_biggie1 = BiggieCreateFromBiggie(bn1);
+    temp_biggie2 = BiggieCreateFromBiggie(bn2);
+    Biggie biggie_zero = BiggieCreate(4);
+    while (BiggieGT(temp_biggie2, biggie_zero))
+    {
+        if (temp_biggie2->number[0] & 1)
+        {
+            temp_result_mult = BiggieAdd(result_mult, temp_biggie1);
+            BiggieDestroy(result_mult);
+            result_mult = temp_result_mult;
+        }
+        Biggie temp = BiggieLeftShift1(temp_biggie1);
+        BiggieDestroy(temp_biggie1);
+        temp_biggie1 = temp;
+        temp = BiggieRightShift1(temp_biggie2);
+        BiggieDestroy(temp_biggie2);
+        temp_biggie2 = temp;
+    }
+    /**
+     * frees biggies
+     */
+    BiggieDestroy(temp_biggie2);
+    BiggieDestroy(temp_biggie1);
+    BiggieDestroy(biggie_zero);
+    return result_mult;
+}

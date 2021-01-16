@@ -105,23 +105,23 @@ int main()
     BiggieDestroy(bn1);
     BiggieDestroy(bn2);
 
-    // x1=rand()%10000;
-    // x2=rand()%10000;
-    // bn1=BiggieCreateFromUInt(x1);
-    // bn2=BiggieCreateFromUInt(x2);
+    x1 = rand() % 10000;
+    x2 = rand() % 10000;
+    bn1 = BiggieCreateFromUInt(x1);
+    bn2 = BiggieCreateFromUInt(x2);
 
-    // // BiggieAdd
-    // bn = BiggieAdd(bn1, bn2);
-    // printf("BiggieAdd           \t%s\t(Biggie=%u, Expected=%u)\n", ((BiggieConvert(bn)==(x1+x2))? "ok" : "fail"), BiggieConvert(bn), (x1+x2));
-    // BiggieDestroy(bn);
+    // BiggieAdd
+    bn = BiggieAdd(bn1, bn2);
+    printf("BiggieAdd           \t%s\t(Biggie=%u, Expected=%u)\n", ((BiggieConvert(bn) == (x1 + x2)) ? "ok" : "fail"), BiggieConvert(bn), (x1 + x2));
+    BiggieDestroy(bn);
 
-    // // BiggieMultiply
-    // bn = BiggieMultiply(bn1, bn2);
-    // printf("BiggieMultiply      \t%s\t(Biggie=%u, Expected=%u)\n", ((BiggieConvert(bn)==x1*x2)? "ok" : "fail"), BiggieConvert(bn), x1*x2);
-    // BiggieDestroy(bn);
+    // BiggieMultiply
+    bn = BiggieMultiply(bn1, bn2);
+    printf("BiggieMultiply      \t%s\t(Biggie=%u, Expected=%u)\n", ((BiggieConvert(bn) == x1 * x2) ? "ok" : "fail"), BiggieConvert(bn), x1 * x2);
+    BiggieDestroy(bn);
 
-    // BiggieDestroy(bn1);
-    // BiggieDestroy(bn2);
+    BiggieDestroy(bn1);
+    BiggieDestroy(bn2);
 
     // // BiggieCreateFromString
     // char str[128];
