@@ -72,7 +72,7 @@ Biggie BiggieCreate(int size)
 // Creates a Biggie from a string (e.g. "12345678999")
 Biggie BiggieCreateFromString(const char *num)
 {
-    Biggie bn = BiggieCreate(atoi(num)); //should be working ! need to check
+    Biggie bn = BiggieCreateFromUInt(atoi(num)); //atoi - switch string to int
     return bn;
 }
 // Creates a new copy of bn

@@ -123,12 +123,12 @@ int main()
     BiggieDestroy(bn1);
     BiggieDestroy(bn2);
 
-    // // BiggieCreateFromString
-    // char str[128];
-    // sprintf(str, "%u", rand());
-    // bn = BiggieCreateFromString(str);
-    //  printf("BiggieCreateFromString\t%s\t(Biggie=%u, Expected=%s)\n", ((BiggieConvert(bn)==atoi(str))? "ok" : "fail"), BiggieConvert(bn), str);
-    //  BiggieDestroy(bn);
+    // BiggieCreateFromString
+    char str[128];
+    sprintf(str, "%u", rand());
+    bn = BiggieCreateFromString(str);
+    printf("BiggieCreateFromString\t%s\t(Biggie=%u, Expected=%s)\n", ((BiggieConvert(bn) == atoi(str)) ? "ok" : "fail"), BiggieConvert(bn), str);
+    BiggieDestroy(bn);
 
     return 0;
 }
