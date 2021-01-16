@@ -119,30 +119,26 @@ void BiggieDestroy(Biggie bn)
 }
 
 // Return the number of bits in a Biggie
-// Example: 000000001011 => numbits == 4
+// Example: 00001011 => numbits == 4
 unsigned int BiggieNumBits(const Biggie bn)
 {
-    int counter = 0;
-    bool is_one = false;
-    unsigned int returnN = 0;
+    // unsigned int counter = 0;
+    // bool is_one = false;
+    unsigned int num_bits = 0;
+    int counter_empty_bytes = 0;
     int i;
-    for (i = (bn->size - 1); i > 0; i--)
+    for (i = ((bn->size) - 1); i >= 0; i--)
     {
         int j;
         for (j = 7; j >= 0; j--)
         {
             if (((bn->number[i] << (7 - j)) >> 7) == 1)
             {
-                is_one = true;
-                if ((j == 0) && (!is_one))
-                    counter += 8;
-            }
-            if (is_one == true)
-            {
-                returnN = ((bn->size) * 8) - (7 - j);
-                return returnN - counter;
+                num_bits = ((((bn->size) - counter_empty_bytes)) * 8) - (8 - j - 1);
+                return num_bits;
             }
         }
+        counter_empty_bytes++;
     }
 }
 
