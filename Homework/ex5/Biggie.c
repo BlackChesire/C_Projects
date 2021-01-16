@@ -122,8 +122,6 @@ void BiggieDestroy(Biggie bn)
 // Example: 00001011 => numbits == 4
 unsigned int BiggieNumBits(const Biggie bn)
 {
-    // unsigned int counter = 0;
-    // bool is_one = false;
     unsigned int num_bits = 0;
     int counter_empty_bytes = 0;
     int i;
@@ -279,7 +277,7 @@ unsigned int BiggieConvert(const Biggie bn)
         return number;
     }
     number += bn->number[1] << 8;
-    if (bn->size < 3)
+    number 000000000 000000000 000101000 011000000 if (bn->size < 3) bn->number 000101000 011000000
     {
         return number;
     }
