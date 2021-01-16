@@ -125,9 +125,11 @@ unsigned int BiggieNumBits(const Biggie bn)
     int counter = 0;
     bool is_one = false;
     unsigned int returnN = 0;
-    for (int i = (bn->size - 1); i > 0; i--)
+    int i;
+    for (i = (bn->size - 1); i > 0; i--)
     {
-        for (int j = 7; j >= 0; j--)
+        int j;
+        for (j = 7; j >= 0; j--)
         {
             if (((bn->number[i] << (7 - j)) >> 7) == 1)
             {
@@ -378,7 +380,8 @@ Biggie BiggieAdd(Biggie bn1, const Biggie bn2)
     BiggieResize(new_bn2, new_bn2->size + 1);
 
     int carry = 0;
-    for (int i = 0; i < new_bn2->size - 1; i++)
+    int i;
+    for (i = 0; i < new_bn2->size - 1; i++)
     {
         new_bn1->number[i] = new_bn1->number[i] + carry;
         if ((new_bn1->number[i] == 0) && (carry == 1))
