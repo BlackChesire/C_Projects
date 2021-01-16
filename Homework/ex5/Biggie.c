@@ -400,7 +400,7 @@ Biggie BiggieAdd(Biggie bn1, const Biggie bn2)
 Biggie BiggieMultiply(Biggie bn1, const Biggie bn2)
 {
     /**
-     * creating all the requiered biggies
+     * creating all the required biggies
      */
     Biggie temp_biggie1;
     Biggie temp_biggie2;
