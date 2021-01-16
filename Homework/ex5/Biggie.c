@@ -130,13 +130,13 @@ unsigned int BiggieNumBits(const Biggie bn)
         int j;
         for (j = 7; j >= 0; j--)
         {
-            if (((bn->number[i] << (7 - j)) >> 7) == 1)
-            {
+            if (((bn->number[i] << (7 - j)) >> 7) == 1) //check if the LSB bit is 1
+            {                                           //num nits = (number of all Bytes) - (Bytes with only zeros) - (num of bits we count in the specific Byte until we get 1)
                 num_bits = ((((bn->size) - counter_empty_bytes)) * 8) - (8 - j - 1);
                 return num_bits;
             }
         }
-        counter_empty_bytes++;
+        counter_empty_bytes++; //count the number of Bytes that have only zeros
     }
 }
 
@@ -277,7 +277,7 @@ unsigned int BiggieConvert(const Biggie bn)
         return number;
     }
     number += bn->number[1] << 8;
-    number 000000000 000000000 000101000 011000000 if (bn->size < 3) bn->number 000101000 011000000
+    if (bn->size < 3)
     {
         return number;
     }
@@ -411,7 +411,7 @@ Biggie BiggieMultiply(Biggie bn1, const Biggie bn2)
     Biggie biggie_zero = BiggieCreate(4);
     while (BiggieGT(temp_biggie2, biggie_zero))
     {
-        if (temp_biggie2->number[0] & 1)
+        if ((temp_biggie2->number[0] & 1) == 1)
         {
             temp_result_mult = BiggieAdd(result_mult, temp_biggie1);
             BiggieDestroy(result_mult);
